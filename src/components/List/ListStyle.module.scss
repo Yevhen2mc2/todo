@@ -1,0 +1,72 @@
+.taskOne{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.containerList{
+    display: flex;
+    flex-direction: column;
+
+    .chip{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        font-size: 10px;
+        min-width: 40px;
+        padding: 3px;
+        height: 14px;
+        border-radius: 5px;
+        display: flex;
+    }
+
+    .high{
+        background-color: #ab2020;
+        color: white;
+    }
+    .medium{
+        background-color: #eeee50;
+    }
+    .low{
+        background-color: green;
+        color: white;
+    }
+
+    .taskData{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .taskTitle{
+            margin: 10px;
+        }
+
+        .taskDescription{
+            margin: 10px;
+            max-width: 400px;
+        }
+    }
+
+    .data{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.deadline{
+
+}
+
+.timeLeft{
+
+}
+
+.edit{
+    margin: 5px;
+}
+
+.delete{
+    margin: 5px;
+}
