@@ -20,3 +20,15 @@ export const removeTask = (task: string) => {
     payload: task,
   };
 };
+
+export const getTasksFromJson = () => {
+  return {
+    type: actionsTypes.GET_TASKS_FROM_JSON,
+  };
+};
+
+export const putTasksToStore = () => {
+  return {
+    type: actionsTypes.PUT_TASKS_TO_STORE,
+  };
+};

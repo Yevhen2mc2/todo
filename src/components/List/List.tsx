@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
-import { removeTask } from "../../redux/todo/actions/actions";
+import { getTasksFromJson, removeTask } from "../../redux/todo/actions/actions";
 import style from "./ListStyle.module.scss";
 import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
+  dispatch(getTasksFromJson());
+  console.log("dispatched getTasksFromJson");
   const deleteItem = (id: string) => {
     dispatch(removeTask(id));
   };
