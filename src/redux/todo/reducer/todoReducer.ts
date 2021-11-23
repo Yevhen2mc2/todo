@@ -20,7 +20,7 @@ export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
       return {
         ...state,
         list: state.list
-          .filter((task) => task.id !== action.payload.id)
+          .filter((task) => task.id !== action.payload)
           .map((task, index) => {
             return { ...task, numb: index + 1 };
           }),

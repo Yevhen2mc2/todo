@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
-  const deleteItem = (task: TaskItem) => {
-    dispatch(removeTask(task));
+  const deleteItem = (id: string) => {
+    dispatch(removeTask(id));
   };
 
   const calculateDifference = (deadline: Date | null): string => {
@@ -44,7 +44,7 @@ const List: React.FC = () => {
             </div>
           </div>
           <Link to={`/edit/${item.id}`}>edit</Link>
-          <Button onClick={() => deleteItem(item)} className={style.delete}>
+          <Button onClick={() => deleteItem(item.id)} className={style.delete}>
             delete
           </Button>
         </div>

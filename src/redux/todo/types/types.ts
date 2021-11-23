@@ -17,7 +17,7 @@ export interface IAddNewTask {
 
 export interface IRemoveTask {
   type: typeof actionsTypes.REMOVE_TASK;
-  payload: TaskItem;
+  payload: string;
 }
 
 export interface IUprateTask {

@@ -14,7 +14,7 @@ export const updateTask = (task: Partial<TaskItem>) => {
   };
 };
 
-export const removeTask = (task: TaskItem) => {
+export const removeTask = (task: string) => {
   return {
     type: actionsTypes.REMOVE_TASK,
     payload: task,
