@@ -14,9 +14,14 @@ const List: React.FC = () => {
     dispatch(removeTask(id));
   };
 
-  const calculateDifference = (deadline: Date | null): string => {
-    if (deadline) return "" + differenceInDays(deadline, new Date());
-    return "error in fun calculateDifference";
+  const calculateDifference = (task, deadline: Date | null): string => {
+    const deadlineDays: number | undefined = deadline
+      ? differenceInDays(deadline, new Date())
+      : undefined;
+    if (deadlineDays) {
+      return `Time left: ` + deadlineDays + " days";
+    }
+    return "Error calc Date";
   };
 
   const renderTaskList = (list: TaskItem[]) => {
@@ -39,7 +44,7 @@ const List: React.FC = () => {
                 {`Deadline: ${item.deadline?.toLocaleDateString()}`}
               </div>
               <div className={style.timeLeft}>
-                {`Time left: ` + calculateDifference(item.deadline) + " days"}
+                {calculateDifference(item, item.deadline)}
               </div>
             </div>
           </div>
