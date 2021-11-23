@@ -29,14 +29,14 @@ const List: React.FC = () => {
                 {item.priority}
               </div>
               <div className={style.taskTitle}>
-                {`${item.numb}. ` + item.title}
+                {`${item.numb}. ${item.title}`}
               </div>
               <div className={style.taskDescription}>{item.description}</div>
             </div>
             <div className={style.data}>
               {" "}
               <div className={style.deadline}>
-                {`Deadline: ` + item.deadline?.toLocaleDateString()}
+                {`Deadline: ${item.deadline?.toLocaleDateString()}`}
               </div>
               <div className={style.timeLeft}>
                 {`Time left: ` + calculateDifference(item.deadline) + " days"}
