@@ -67,9 +67,7 @@ const Edit: React.FC = () => {
   }
 
   const handleAddToListByEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      if (todoData.title !== "") updateTaskInRedux();
-    }
+    if (e.key === "Enter" && todoData.title !== "") updateTaskInRedux();
   };
 
   const handleAddToListByButton = (e: MouseEvent<HTMLButtonElement>) => {

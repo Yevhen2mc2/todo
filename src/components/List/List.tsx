@@ -58,7 +58,7 @@ const List: React.FC = () => {
   return (
     <div>
       <div className={style.containerList}>{renderTaskList(list)}</div>
-      <Link to={`/`}>main</Link>
+      <Link to="/">main</Link>
     </div>
   );
 };

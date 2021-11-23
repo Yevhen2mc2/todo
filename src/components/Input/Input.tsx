@@ -61,9 +61,7 @@ const Input: React.FC = () => {
   }
 
   const handleAddToListByEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      if (inputTitle !== "") addNewTaskInStore();
-    }
+    if (e.key === "Enter" && inputTitle !== "") addNewTaskInStore();
   };
 
   const handleAddToListByButton = (e: MouseEvent<HTMLButtonElement>) => {
