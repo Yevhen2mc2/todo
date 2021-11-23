@@ -33,5 +33,4 @@ export interface TaskItem {
   description: string;
   deadline: Date | null;
   priority: Priority;
-  numb?: number;
 }

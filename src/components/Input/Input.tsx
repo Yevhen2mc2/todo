@@ -35,7 +35,6 @@ const Input: React.FC = () => {
         description: inputDescription,
         deadline: deadline,
         priority: priority,
-        numb: length + 1,
       })
     );
     setInputTitle("");

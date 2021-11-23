@@ -28,9 +28,9 @@ const List: React.FC = () => {
               <div className={clsx(style.chip, style[item.priority])}>
                 {item.priority}
               </div>
-              <div className={style.taskTitle}>
-                {`${item.numb}. ${item.title}`}
-              </div>
+              <div className={style.taskTitle}>{`${index + 1}. ${
+                item.title
+              }`}</div>
               <div className={style.taskDescription}>{item.description}</div>
             </div>
             <div className={style.data}>
