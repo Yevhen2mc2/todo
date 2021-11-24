@@ -33,3 +33,10 @@ export const putTasksToStore = (list: TaskItem[]) => {
     payload: list,
   };
 };
+
+export const putTaskToJSON = (task: TaskItem) => {
+  return {
+    type: actionsTypes.PUT_TASK_TO_JSON,
+    payload: task,
+  };
+};

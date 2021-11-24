@@ -54,9 +54,9 @@ const List: React.FC = () => {
             </div>
           </div>
           <Link to={`/edit/${item.id}`}>edit</Link>
-          <Button onClick={() => deleteItem(item.id)} className={style.delete}>
-            delete
-          </Button>
+          {/*<Button onClick={() => deleteItem(item.id)} className={style.delete}>*/}
+          {/*  delete*/}
+          {/*</Button>*/}
         </div>
       ));
     }
@@ -64,7 +64,8 @@ const List: React.FC = () => {
     return <div>Empty list</div>;
   };
 
-  const list = useSelector((state: RootState) => state.todo.list);
+  // const list = useSelector((state: RootState) => state.todo.list);
+  dispatch();
   return (
     <div>
       <div className={style.containerList}>{renderTaskList(list)}</div>

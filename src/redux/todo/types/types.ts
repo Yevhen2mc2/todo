@@ -3,6 +3,7 @@ export enum actionsTypes {
   REMOVE_TASK = "REMOVE_TASK",
   UPDATE_TASK = "UPDATE_TASK",
   GET_TASKS_FROM_JSON = "GET_TASKS_FROM_JSON",
+  PUT_TASK_TO_JSON = "PUT_TASK_TO_JSON",
   PUT_TASKS_TO_STORE = "PUT_TASKS_TO_STORE",
 }
 
@@ -39,7 +40,7 @@ export interface IPutTasks {
 export type TASKS_ACTIONS = IAddNewTask | IRemoveTask | IUprateTask | IPutTasks;
 
 export interface TaskItem {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   deadline: Date | null;

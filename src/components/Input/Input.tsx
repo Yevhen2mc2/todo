@@ -6,12 +6,11 @@ import React, {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTask } from "../../redux/todo/actions/actions";
+import { addNewTask, putTaskToJSON } from "../../redux/todo/actions/actions";
 import { v4 as uuidv4 } from "uuid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./InputStyle.module.scss";
-import { RootState } from "../../redux/rootReducer";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDatePicker } from "@mui/lab";
@@ -21,7 +20,6 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Input: React.FC = () => {
-  const length = useSelector((state: RootState) => state.todo.list.length);
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
   const dispatch = useDispatch();
@@ -29,8 +27,17 @@ const Input: React.FC = () => {
 
   const addNewTaskInStore = (): void => {
     dispatch(
-      addNewTask({
-        id: uuidv4(),
+      putTaskToJSON({
+        title: inputTitle,
+        description: inputDescription,
+        deadline: deadline,
+        priority: priority,
+      })
+    );
+
+    console.log(
+      "data befor send",
+      JSON.stringify({
         title: inputTitle,
         description: inputDescription,
         deadline: deadline,
