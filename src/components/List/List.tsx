@@ -7,11 +7,14 @@ import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
-  dispatch(getTasksFromJson());
-  console.log("dispatched getTasksFromJson");
+  useEffect(() => {
+    dispatch(getTasksFromJson());
+    console.log("dispatch getTasksFromJson");
+  }, []);
   const deleteItem = (id: string) => {
     dispatch(removeTask(id));
   };

@@ -38,9 +38,9 @@ export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
     }
 
     case actionsTypes.PUT_TASKS_TO_STORE: {
-      console.log("PUT IN STORE, action.payload:", action.payload);
-      // return { ...state, list: [action.payload] };
-      return state;
+      // console.log("PUT IN STORE, action.payload:", action.payload);
+      // console.log("new store:", { ...state, list: action.payload });
+      return { ...state, list: action.payload };
     }
 
     default:

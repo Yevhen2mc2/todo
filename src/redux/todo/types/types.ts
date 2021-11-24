@@ -6,6 +6,10 @@ export enum actionsTypes {
   PUT_TASKS_TO_STORE = "PUT_TASKS_TO_STORE",
 }
 
+// export enum sagaActionsTypes {
+//   GET_TASKS_FROM_JSON = "GET_TASKS_FROM_JSON",
+// }
+
 export enum Priority {
   LOW = "low",
   MEDIUM = "medium",

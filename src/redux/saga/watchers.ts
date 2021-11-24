@@ -1,9 +1,9 @@
 import { all, takeEvery } from "redux-saga/effects";
-import { getTasksFromJson } from "../todo/actions/actions";
 import { getTasksFromJSON_worker } from "./workers";
+import { actionsTypes } from "../todo/types/types";
 
 function* getTodos() {
-  yield takeEvery(getTasksFromJson, getTasksFromJSON_worker);
+  yield takeEvery(actionsTypes.GET_TASKS_FROM_JSON, getTasksFromJSON_worker);
 }
 
 export function* rootWatcher() {
