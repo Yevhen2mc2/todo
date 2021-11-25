@@ -40,6 +40,7 @@ const Edit: React.FC = () => {
     if (!taskToEdit) {
       navigate("/list");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskToEdit]);
 
   const [deadline, setDeadline] = useState<Date | undefined | null>(

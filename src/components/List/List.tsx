@@ -16,6 +16,7 @@ const List: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTasksFromJson());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const deleteItem = (id: number | undefined) => {
     dispatch(deleteTaskInJSON(id));
