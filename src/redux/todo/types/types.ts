@@ -4,13 +4,6 @@ export enum actionsTypes {
   PUT_TASKS_TO_STORE = "PUT_TASKS_TO_STORE",
 }
 
-export enum sagaActionsTypes {
-  GET_TASKS_FROM_JSON = "GET_TASKS_FROM_JSON",
-  PUT_TASK_TO_JSON = "PUT_TASK_TO_JSON",
-  UPDATE_TASK_IN_JSON = "UPDATE_TASK_IN_JSON",
-  DELETE_TASK_IN_JSON = "DELETE_TASK_IN_JSON",
-}
-
 export enum Priority {
   LOW = "low",
   MEDIUM = "medium",

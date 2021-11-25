@@ -6,8 +6,6 @@ import React, {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTask, putTaskToJSON } from "../../redux/todo/actions/actions";
-import { v4 as uuidv4 } from "uuid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./InputStyle.module.scss";
@@ -18,6 +16,7 @@ import { addDays, format } from "date-fns";
 import { Priority } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Link } from "react-router-dom";
+import { putTaskToJSON } from "../../redux/saga/types/types";
 
 const Input: React.FC = () => {
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));

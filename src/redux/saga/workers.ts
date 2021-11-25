@@ -1,7 +1,8 @@
 import { call, put } from "redux-saga/effects";
-import { getTasksFromJson, putTasksToStore } from "../todo/actions/actions";
+import { putTasksToStore } from "../todo/actions/actions";
 import { TaskItem } from "../todo/types/types";
 import { todoAPI } from "./API/todoAPI";
+import { getTasksFromJson } from "./types/types";
 
 export function* workerGetAllTasksFromJSON() {
   try {

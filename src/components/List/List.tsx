@@ -1,9 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
-import {
-  deleteTaskInJSON,
-  getTasksFromJson,
-} from "../../redux/todo/actions/actions";
 import style from "./ListStyle.module.scss";
 import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
@@ -11,6 +7,10 @@ import { differenceInDays } from "date-fns";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import {
+  deleteTaskInJSON,
+  getTasksFromJson,
+} from "../../redux/saga/types/types";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();

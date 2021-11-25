@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTask, updateTaskInJSON } from "../redux/todo/actions/actions";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./editStyle.module.scss";
@@ -18,6 +17,7 @@ import { Priority, TaskItem } from "../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { createSelector } from "reselect";
+import { updateTaskInJSON } from "../redux/saga/types/types";
 
 const Edit: React.FC = () => {
   const navigate = useNavigate();

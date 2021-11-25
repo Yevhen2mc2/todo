@@ -5,7 +5,7 @@ import {
   workerDeleteTaskInJSON,
   workerUpdateTaskInJSON,
 } from "./workers";
-import { sagaActionsTypes } from "../todo/types/types";
+import { sagaActionsTypes } from "./types/types";
 
 function* getTodos() {
   yield takeEvery(
