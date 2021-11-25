@@ -1,48 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { getTasksFromJson, putTasksToStore } from "../todo/actions/actions";
 import { TaskItem } from "../todo/types/types";
-
-class TodoAPI {
-  url: string;
-  constructor(url: string) {
-    this.url = url;
-  }
-
-  post(todo: TaskItem) {
-    return fetch(this.url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(todo),
-    });
-  }
-
-  update(task: TaskItem) {
-    return fetch(this.url + `/${task.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
-  }
-
-  delete(id: number) {
-    return fetch(this.url + `/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
-  getAll() {
-    return fetch(this.url);
-  }
-}
-
-const todoAPI = new TodoAPI("http://localhost:8000/todos");
+import { todoAPI } from "./API/todoAPI";
 
 export function* workerGetAllTasksFromJSON() {
   try {
