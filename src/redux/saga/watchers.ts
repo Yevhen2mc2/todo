@@ -5,22 +5,25 @@ import {
   workerDeleteTaskInJSON,
   workerUpdateTaskInJSON,
 } from "./workers";
-import { actionsTypes } from "../todo/types/types";
+import { sagaActionsTypes } from "../todo/types/types";
 
 function* getTodos() {
-  yield takeEvery(actionsTypes.GET_TASKS_FROM_JSON, workerGetAllTasksFromJSON);
+  yield takeEvery(
+    sagaActionsTypes.GET_TASKS_FROM_JSON,
+    workerGetAllTasksFromJSON
+  );
 }
 
 function* putTask() {
-  yield takeEvery(actionsTypes.PUT_TASK_TO_JSON, workerPutTasksToJSON);
+  yield takeEvery(sagaActionsTypes.PUT_TASK_TO_JSON, workerPutTasksToJSON);
 }
 
 function* updateTask() {
-  yield takeEvery(actionsTypes.UPDATE_TASK_IN_JSON, workerUpdateTaskInJSON);
+  yield takeEvery(sagaActionsTypes.UPDATE_TASK_IN_JSON, workerUpdateTaskInJSON);
 }
 
 function* deleteTask() {
-  yield takeEvery(actionsTypes.DELETE_TASK_IN_JSON, workerDeleteTaskInJSON);
+  yield takeEvery(sagaActionsTypes.DELETE_TASK_IN_JSON, workerDeleteTaskInJSON);
 }
 
 export function* rootWatcher() {
