@@ -39,8 +39,6 @@ const Edit: React.FC = () => {
     const updatedTask: Partial<TaskItem> = todoData;
     updatedTask.deadline = deadline;
     updatedTask.priority = priority;
-
-    //dispatch(updateTask(updatedTask));
     dispatch(updateTaskInJSON(updatedTask));
     navigate("/list");
   };

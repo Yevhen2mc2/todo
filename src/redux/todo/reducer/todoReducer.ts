@@ -2,12 +2,10 @@ import { actionsTypes, TASKS_ACTIONS, TaskItem } from "../types/types";
 
 interface InitialState {
   list: TaskItem[] | [];
-  selectedTodo: string | null;
 }
 
 const initialState: InitialState = {
   list: [],
-  selectedTodo: null,
 };
 
 export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
