@@ -38,7 +38,7 @@ const Edit: React.FC = () => {
 
   useEffect(() => {
     if (!taskToEdit) {
-      navigate("/list");
+      navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskToEdit]);
@@ -58,11 +58,11 @@ const Edit: React.FC = () => {
     if (updatedTask?.deadline) updatedTask.deadline = deadline;
     if (updatedTask?.priority) updatedTask.priority = priority;
     if (updatedTask) dispatch(updateTaskInJSON(updatedTask));
-    navigate("/list");
+    navigate("/");
   };
 
   const handleBackToList = () => {
-    navigate("/list");
+    navigate("/");
   };
 
   function datePickers() {

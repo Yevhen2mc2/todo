@@ -10,8 +10,8 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Input />} />
-          <Route path="list" element={<List />} />
+          <Route path="/" element={<List />} />
+          <Route path="input" element={<Input />} />
           <Route path="edit/:id" element={<Edit />} />
           <Route
             path="*"

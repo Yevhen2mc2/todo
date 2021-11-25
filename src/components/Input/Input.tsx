@@ -115,7 +115,7 @@ const Input: React.FC = () => {
       >
         add
       </Button>
-      <Link to="/list">List</Link>
+      <Link to="/">List</Link>
     </div>
   );
 };
