@@ -34,16 +34,6 @@ const Input: React.FC = () => {
         priority: priority,
       })
     );
-
-    console.log(
-      "data befor send",
-      JSON.stringify({
-        title: inputTitle,
-        description: inputDescription,
-        deadline: deadline,
-        priority: priority,
-      })
-    );
     setInputTitle("");
     setDescription("");
     if (focusOnInput.current) focusOnInput.current.focus();

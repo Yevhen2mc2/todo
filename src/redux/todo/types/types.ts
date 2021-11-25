@@ -1,10 +1,11 @@
 export enum actionsTypes {
   ADD_NEW_TASK = "ADD_NEW_TASK",
-  REMOVE_TASK = "REMOVE_TASK",
   UPDATE_TASK = "UPDATE_TASK",
   GET_TASKS_FROM_JSON = "GET_TASKS_FROM_JSON",
   PUT_TASK_TO_JSON = "PUT_TASK_TO_JSON",
   PUT_TASKS_TO_STORE = "PUT_TASKS_TO_STORE",
+  UPDATE_TASK_IN_JSON = "UPDATE_TASK_IN_JSON",
+  DELETE_TASK_IN_JSON = "DELETE_TASK_IN_JSON",
 }
 
 // export enum sagaActionsTypes {
@@ -22,11 +23,6 @@ export interface IAddNewTask {
   payload: TaskItem;
 }
 
-export interface IRemoveTask {
-  type: typeof actionsTypes.REMOVE_TASK;
-  payload: string;
-}
-
 export interface IUprateTask {
   type: typeof actionsTypes.UPDATE_TASK;
   payload: TaskItem;
@@ -37,10 +33,10 @@ export interface IPutTasks {
   payload: TaskItem[];
 }
 
-export type TASKS_ACTIONS = IAddNewTask | IRemoveTask | IUprateTask | IPutTasks;
+export type TASKS_ACTIONS = IAddNewTask | IUprateTask | IPutTasks;
 
 export interface TaskItem {
-  id?: string;
+  id?: number;
   title: string;
   description: string;
   deadline: Date | null;

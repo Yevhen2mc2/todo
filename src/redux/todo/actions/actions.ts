@@ -14,13 +14,6 @@ export const updateTask = (task: Partial<TaskItem>) => {
   };
 };
 
-export const removeTask = (task: string) => {
-  return {
-    type: actionsTypes.REMOVE_TASK,
-    payload: task,
-  };
-};
-
 export const getTasksFromJson = () => {
   return {
     type: actionsTypes.GET_TASKS_FROM_JSON,
@@ -38,5 +31,19 @@ export const putTaskToJSON = (task: TaskItem) => {
   return {
     type: actionsTypes.PUT_TASK_TO_JSON,
     payload: task,
+  };
+};
+
+export const updateTaskInJSON = (task: Partial<TaskItem>) => {
+  return {
+    type: actionsTypes.UPDATE_TASK_IN_JSON,
+    payload: task,
+  };
+};
+
+export const deleteTaskInJSON = (id: number | undefined) => {
+  return {
+    type: actionsTypes.DELETE_TASK_IN_JSON,
+    payload: id,
   };
 };

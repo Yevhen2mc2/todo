@@ -16,17 +16,6 @@ export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
       return { ...state, list: [...state.list, action.payload] };
     }
 
-    case actionsTypes.REMOVE_TASK: {
-      return {
-        ...state,
-        list: state.list
-          .filter((task) => task.id !== action.payload)
-          .map((task, index) => {
-            return { ...task, numb: index + 1 };
-          }),
-      };
-    }
-
     case actionsTypes.UPDATE_TASK: {
       const newTasks: TaskItem[] = state.list.map((task) => {
         if (task.id === action.payload.id) {

@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { putTasksToStore } from "../todo/actions/actions";
+import { getTasksFromJson, putTasksToStore } from "../todo/actions/actions";
 import { TaskItem } from "../todo/types/types";
 
 class TodoAPI {
@@ -8,8 +8,8 @@ class TodoAPI {
     this.url = url;
   }
 
-  putOne(todo: TaskItem) {
-    return fetch("http://localhost:8000/todos", {
+  post(todo: TaskItem) {
+    return fetch(this.url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,19 +18,40 @@ class TodoAPI {
     });
   }
 
+  update(task: TaskItem) {
+    return fetch(this.url + `/${task.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+  }
+
+  delete(id: number) {
+    return fetch(this.url + `/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   getAll() {
-    return fetch("http://localhost:8000/todos");
+    return fetch(this.url);
   }
 }
 
 const todoAPI = new TodoAPI("http://localhost:8000/todos");
 
-export function* workerGetTasksFromJSON() {
+export function* workerGetAllTasksFromJSON() {
   try {
-    const data = yield call(todoAPI.getAll);
-    const [json] = yield data.json();
-    json.deadline = new Date(json.deadline);
-    yield put(putTasksToStore(json));
+    const data = yield call(() => todoAPI.getAll());
+    const todos = yield data.json();
+    const todosCorrectDate: TaskItem[] = todos.map((item, index) => {
+      return { ...item, deadline: new Date(todos[index].deadline) };
+    });
+    yield put(putTasksToStore(todosCorrectDate));
   } catch {
     throw new Error("Error get tasks from json-server");
   }
@@ -38,10 +59,25 @@ export function* workerGetTasksFromJSON() {
 
 export function* workerPutTasksToJSON(action) {
   try {
-    console.log("action in workerPutTasksToJSON", action);
-    const send = yield todoAPI.putOne(action.payload);
-    console.log("response", send);
+    yield call(() => todoAPI.post(action.payload));
   } catch {
     throw new Error("Error put task to json-server");
+  }
+}
+
+export function* workerUpdateTaskInJSON(action) {
+  try {
+    yield call(() => todoAPI.update(action.payload));
+  } catch {
+    throw new Error("Error update task in json-server");
+  }
+}
+
+export function* workerDeleteTaskInJSON(action) {
+  try {
+    yield call(() => todoAPI.delete(action.payload));
+    yield put(getTasksFromJson());
+  } catch {
+    throw new Error("Error update task in json-server");
   }
 }

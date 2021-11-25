@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTask } from "../redux/todo/actions/actions";
+import { updateTask, updateTaskInJSON } from "../redux/todo/actions/actions";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./editStyle.module.scss";
@@ -24,12 +24,11 @@ const Edit: React.FC = () => {
   const routeParams = useParams();
 
   const tasks = (state) => state.todo.list;
-  const selectedTask = createSelector([tasks], (state) => {
-    state.todo.list.find((task) => task.id === routeParams.id);
-  });
-  console.log("selectedTask:", selectedTask);
+  // const selectedTask = createSelector([tasks], (state) => {
+  //   state.todo.list.find((task) => task.id === routeParams.id);
+  // });
   const taskInRedux = useSelector((state: RootState) => state.todo.list).find(
-    (task) => task.id === routeParams.id
+    (task) => task.id == routeParams.id
   ) as TaskItem;
   const [deadline, setDeadline] = useState<Date | null>(taskInRedux.deadline);
   const [priority, setPriority] = useState<Priority>(taskInRedux.priority);
@@ -38,11 +37,11 @@ const Edit: React.FC = () => {
 
   const updateTaskInRedux = (): void => {
     const updatedTask: Partial<TaskItem> = todoData;
-    console.log("obj to redux", updatedTask);
     updatedTask.deadline = deadline;
     updatedTask.priority = priority;
 
-    dispatch(updateTask(updatedTask));
+    //dispatch(updateTask(updatedTask));
+    dispatch(updateTaskInJSON(updatedTask));
     navigate("/list");
   };
   const [todoData, setTodoData] = useState<Partial<TaskItem>>(taskInRedux);

@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
-import { getTasksFromJson, removeTask } from "../../redux/todo/actions/actions";
+import {
+  deleteTaskInJSON,
+  getTasksFromJson,
+} from "../../redux/todo/actions/actions";
 import style from "./ListStyle.module.scss";
 import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
@@ -13,10 +16,9 @@ const List: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTasksFromJson());
-    console.log("dispatch getTasksFromJson");
   }, []);
-  const deleteItem = (id: string) => {
-    dispatch(removeTask(id));
+  const deleteItem = (id: number | undefined) => {
+    dispatch(deleteTaskInJSON(id));
   };
 
   const calculateDifference = (task, deadline: Date | null): string => {
@@ -54,9 +56,9 @@ const List: React.FC = () => {
             </div>
           </div>
           <Link to={`/edit/${item.id}`}>edit</Link>
-          {/*<Button onClick={() => deleteItem(item.id)} className={style.delete}>*/}
-          {/*  delete*/}
-          {/*</Button>*/}
+          <Button onClick={() => deleteItem(item.id)} className={style.delete}>
+            delete
+          </Button>
         </div>
       ));
     }
@@ -64,8 +66,7 @@ const List: React.FC = () => {
     return <div>Empty list</div>;
   };
 
-  // const list = useSelector((state: RootState) => state.todo.list);
-  dispatch();
+  const list = useSelector((state: RootState) => state.todo.list);
   return (
     <div>
       <div className={style.containerList}>{renderTaskList(list)}</div>
