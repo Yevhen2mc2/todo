@@ -2,6 +2,7 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   MouseEvent,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -17,32 +18,47 @@ import { Priority, TaskItem } from "../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { createSelector } from "reselect";
-import { updateTaskInJSON } from "../redux/saga/types/types";
+import { updateTaskInJSON } from "../redux/saga/todo/types/types";
 
 const Edit: React.FC = () => {
+  const dispatch = useDispatch();
+  const focusOnInput = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const routeParams = useParams();
 
-  const tasks = (state) => state.todo.list;
-  // const selectedTask = createSelector([tasks], (state) => {
-  //   state.todo.list.find((task) => task.id === routeParams.id);
-  // });
-  const taskInRedux = useSelector((state: RootState) => state.todo.list).find(
-    (task) => task.id == routeParams.id
-  ) as TaskItem;
-  const [deadline, setDeadline] = useState<Date | null>(taskInRedux.deadline);
-  const [priority, setPriority] = useState<Priority>(taskInRedux.priority);
-  const dispatch = useDispatch();
-  const focusOnInput = useRef<HTMLInputElement>(null);
+  const listInRedux = (state: RootState) => state.todo.list;
+
+  const selectorTaskToEdit = createSelector(listInRedux, (list) =>
+    list.find((task) => task.id === Number(routeParams.id))
+  );
+
+  const taskToEdit = selectorTaskToEdit(
+    useSelector((state: RootState) => state)
+  );
+
+  useEffect(() => {
+    if (!taskToEdit) {
+      navigate("/list");
+    }
+  }, [taskToEdit]);
+
+  const [deadline, setDeadline] = useState<Date | undefined | null>(
+    taskToEdit?.deadline
+  );
+  const [priority, setPriority] = useState<Priority | undefined>(
+    taskToEdit?.priority
+  );
+  const [todoData, setTodoData] = useState<Partial<TaskItem> | undefined>(
+    taskToEdit
+  );
 
   const updateTaskInRedux = (): void => {
-    const updatedTask: Partial<TaskItem> = todoData;
-    updatedTask.deadline = deadline;
-    updatedTask.priority = priority;
-    dispatch(updateTaskInJSON(updatedTask));
+    const updatedTask = todoData;
+    if (updatedTask?.deadline) updatedTask.deadline = deadline;
+    if (updatedTask?.priority) updatedTask.priority = priority;
+    if (updatedTask) dispatch(updateTaskInJSON(updatedTask));
     navigate("/list");
   };
-  const [todoData, setTodoData] = useState<Partial<TaskItem>>(taskInRedux);
 
   const handleBackToList = () => {
     navigate("/list");
@@ -64,11 +80,11 @@ const Edit: React.FC = () => {
   }
 
   const handleAddToListByEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && todoData.title !== "") updateTaskInRedux();
+    if (e.key === "Enter" && todoData?.title !== "") updateTaskInRedux();
   };
 
   const handleAddToListByButton = (e: MouseEvent<HTMLButtonElement>) => {
-    if (todoData.title !== "") updateTaskInRedux();
+    if (todoData?.title !== "") updateTaskInRedux();
   };
 
   const handlerChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +101,7 @@ const Edit: React.FC = () => {
         <div className={styles.inputTitle}>
           <TextField
             inputRef={focusOnInput}
-            value={todoData.title}
+            value={todoData?.title}
             onKeyPress={handleAddToListByEnter}
             onChange={handlerChange}
             label="Add task"
@@ -95,7 +111,7 @@ const Edit: React.FC = () => {
         </div>
         <div className={styles.inputDescription}>
           <TextField
-            value={todoData.description}
+            value={todoData?.description}
             onKeyPress={handleAddToListByEnter}
             onChange={handlerChange}
             label="Description"
@@ -123,7 +139,7 @@ const Edit: React.FC = () => {
 
         <div className={styles.data}>{datePickers()}</div>
         <Button
-          disabled={!todoData.title}
+          disabled={!todoData?.title}
           className={styles.save}
           onClick={handleAddToListByButton}
           variant="contained"
