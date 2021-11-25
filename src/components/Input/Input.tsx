@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./InputStyle.module.scss";
