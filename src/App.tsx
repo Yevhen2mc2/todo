@@ -3,7 +3,7 @@ import List from "./components/List/List";
 import { Provider } from "react-redux";
 import store from "./redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Edit from "./routes/edit";
+import Edit from "./components/edit/edit";
 
 const App = () => {
   return (

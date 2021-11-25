@@ -10,15 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./editStyle.module.scss";
-import { RootState } from "../redux/rootReducer";
+import { RootState } from "../../redux/rootReducer";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDatePicker } from "@mui/lab";
-import { Priority, TaskItem } from "../redux/todo/types/types";
+import { Priority, TaskItem } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { createSelector } from "reselect";
-import { updateTaskInJSON } from "../redux/saga/todo/types/types";
+import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
 
 const Edit: React.FC = () => {
   const dispatch = useDispatch();
