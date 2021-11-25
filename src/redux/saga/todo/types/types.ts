@@ -1,4 +1,4 @@
-import { TaskItem } from "../../todo/types/types";
+import { TaskItem } from "../../../todo/types/types";
 
 export enum sagaActionsTypes {
   GET_TASKS_FROM_JSON = "GET_TASKS_FROM_JSON",

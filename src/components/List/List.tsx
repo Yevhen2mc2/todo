@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import {
   deleteTaskInJSON,
   getTasksFromJson,
-} from "../../redux/saga/types/types";
+} from "../../redux/saga/todo/types/types";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const List: React.FC = () => {
     if (deadlineDays) {
       return `Time left: ` + deadlineDays + " days";
     }
-    return "Error calc Date";
+    return "Error calc date";
   };
 
   const renderTaskList = (list: TaskItem[]) => {
