@@ -1,4 +1,3 @@
-import styles from "./App.module.scss";
 import Input from "./components/Input/Input";
 import List from "./components/List/List";
 import { Provider } from "react-redux";
