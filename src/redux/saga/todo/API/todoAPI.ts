@@ -40,4 +40,4 @@ class TodoAPI {
   }
 }
 
-export const todoAPI = new TodoAPI("http://localhost:8000/todos");
+export const todoAPI = new TodoAPI(process.env.REACT_APP_TODOS_URL as string);
