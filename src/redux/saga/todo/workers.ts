@@ -8,8 +8,8 @@ export function* workerGetAllTasksFromJSON() {
   try {
     const data = yield call(() => todoAPI.getAll());
     const todos = yield data.json();
-    const todosCorrectDate: TaskItem[] = todos.map((item, index) => {
-      return { ...item, deadline: new Date(todos[index].deadline) };
+    const todosCorrectDate: TaskItem[] = todos.map((item) => {
+      return { ...item, deadline: new Date(item.deadline) };
     });
     yield put(putTasksToStore(todosCorrectDate));
   } catch {
