@@ -70,53 +70,58 @@ const Input: React.FC = () => {
     setDescription(e.currentTarget.value);
 
   return (
-    <div className={styles.containerInput}>
-      <div className={styles.inputTitle}>
-        <TextField
-          inputRef={focusOnInput}
-          value={inputTitle}
-          onKeyPress={handleAddToListByEnter}
-          onChange={handlerChangeTitle}
-          label="Add your task.."
-          variant="outlined"
-        />
-      </div>
-      <div className={styles.inputDescription}>
-        <TextField
-          value={inputDescription}
-          onKeyPress={handleAddToListByEnter}
-          onChange={handlerChangeDescription}
-          label="Description of task"
-          variant="outlined"
-        />
-      </div>
+    <>
+      <h2 className={styles.title}>Input</h2>
+      <div className={styles.containerInput}>
+        <div className={styles.inputTitle}>
+          <TextField
+            inputRef={focusOnInput}
+            value={inputTitle}
+            onKeyPress={handleAddToListByEnter}
+            onChange={handlerChangeTitle}
+            label="Add your task.."
+            variant="outlined"
+          />
+        </div>
+        <div className={styles.inputDescription}>
+          <TextField
+            value={inputDescription}
+            onKeyPress={handleAddToListByEnter}
+            onChange={handlerChangeDescription}
+            label="Description of task"
+            variant="outlined"
+          />
+        </div>
 
-      <div className={styles.priority}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Priority</InputLabel>
-          <Select
-            value={priority}
-            label="priority"
-            onChange={(e) => setPriority(e.target.value as Priority)}
-          >
-            <MenuItem value={Priority.LOW}>{`${Priority.LOW}`}</MenuItem>
-            <MenuItem value={Priority.MEDIUM}>{`${Priority.MEDIUM}`}</MenuItem>
-            <MenuItem value={Priority.HIGH}>{`${Priority.HIGH}`}</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+        <div className={styles.priority}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+            <Select
+              value={priority}
+              label="priority"
+              onChange={(e) => setPriority(e.target.value as Priority)}
+            >
+              <MenuItem value={Priority.LOW}>{`${Priority.LOW}`}</MenuItem>
+              <MenuItem
+                value={Priority.MEDIUM}
+              >{`${Priority.MEDIUM}`}</MenuItem>
+              <MenuItem value={Priority.HIGH}>{`${Priority.HIGH}`}</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
 
-      <div className={styles.data}>{datePickers()}</div>
-      <Button
-        disabled={!inputTitle}
-        className={styles.add}
-        onClick={handleAddToListByButton}
-        variant="contained"
-      >
-        add
-      </Button>
-      <Link to="/">List</Link>
-    </div>
+        <div className={styles.data}>{datePickers()}</div>
+        <Button
+          disabled={!inputTitle}
+          className={styles.add}
+          onClick={handleAddToListByButton}
+          variant="contained"
+        >
+          add
+        </Button>
+        <Link to="/">List</Link>
+      </div>
+    </>
   );
 };
 
