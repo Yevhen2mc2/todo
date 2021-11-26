@@ -10,15 +10,14 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./editStyle.module.scss";
-import { RootState } from "../../redux/rootReducer";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDatePicker } from "@mui/lab";
 import { Priority, TaskItem } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
-import { createSelector } from "reselect";
 import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
+import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
 
 const Edit: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,15 +25,7 @@ const Edit: React.FC = () => {
   const navigate = useNavigate();
   const routeParams = useParams();
 
-  const listInRedux = (state: RootState) => state.todo.list;
-
-  const selectorTaskToEdit = createSelector(listInRedux, (list) =>
-    list.find((task) => task.id === Number(routeParams.id))
-  );
-
-  const taskToEdit = selectorTaskToEdit(
-    useSelector((state: RootState) => state)
-  );
+  const taskToEdit = useSelector(selectorTaskToEdit(routeParams?.id || ""));
 
   useEffect(() => {
     if (!taskToEdit) {
