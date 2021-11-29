@@ -20,15 +20,25 @@ export const Authorization: React.FC = () => {
     Styles.PASSWORD_ALERT_OFF_STYLE
   );
 
+  const isValidPassword = (p: string | undefined): boolean => {
+    if (p && p.length >= PASSWORD_MIN_LENGTH) {
+      return true;
+    }
+    return false;
+  };
+
   const onSubmit = (e) => {
-    if (e.password?.length < 8 || !e.password) {
+    const validEmail: boolean = isEmail(e.email);
+    const validPassword: boolean = isValidPassword(e.password);
+
+    if (!validPassword) {
       setPasswordAlertStyle(Styles.PASSWORD_ALERT_ON_STYLE);
       setTimeout(() => {
         setPasswordAlertStyle(Styles.PASSWORD_ALERT_OFF_STYLE);
       }, 3000);
     }
 
-    if (isEmail(e.email) && e.password?.length >= PASSWORD_MIN_LENGTH) {
+    if (validEmail && validPassword) {
       console.log("success login");
       const user: User = {
         email: e.email,
