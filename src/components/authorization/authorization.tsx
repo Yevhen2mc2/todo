@@ -3,7 +3,12 @@ import style from "./authorization.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
+import isEmail from "validator/lib/isEmail";
+import { localStorageAPI, User } from "../../localStorage/localStorage";
+
 export const Authorization: React.FC = () => {
+  if (localStorageAPI.getUser()) {
+  }
   const PASSWORD_MIN_LENGTH: number = 8;
 
   enum Styles {
@@ -16,26 +21,27 @@ export const Authorization: React.FC = () => {
   );
 
   const onSubmit = (e) => {
-    console.log("submit", e);
     if (e.password?.length < 8 || !e.password) {
       setPasswordAlertStyle(Styles.PASSWORD_ALERT_ON_STYLE);
       setTimeout(() => {
         setPasswordAlertStyle(Styles.PASSWORD_ALERT_OFF_STYLE);
       }, 3000);
     }
-  };
 
-  const onChangeForms = (values) => {
-    // if (values.password?.length < 8 || values.password?.length) {
-    // } else {
-    // }
-    return {};
+    if (isEmail(e.email) && e.password?.length >= PASSWORD_MIN_LENGTH) {
+      console.log("success login");
+      const user: User = {
+        email: e.email,
+        password: e.password,
+      };
+      localStorageAPI.setUser(user);
+    }
   };
 
   return (
     <>
       <h1>Login at first</h1>
-      <Form onSubmit={onSubmit} validate={(values) => onChangeForms(values)}>
+      <Form onSubmit={onSubmit}>
         {(props) => (
           <form onSubmit={props.handleSubmit}>
             <div className={style.loginContainer}>
