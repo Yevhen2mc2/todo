@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import style from "./authorization.module.scss";
+import style from "./login.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
 import isEmail from "validator/lib/isEmail";
 import { localStorageAPI, User } from "../../localStorage/localStorage";
 
-export const Authorization: React.FC = () => {
-  if (localStorageAPI.getUser()) {
-  }
+export const Login: React.FC = () => {
   const PASSWORD_MIN_LENGTH: number = 8;
 
   enum Styles {
@@ -21,10 +19,7 @@ export const Authorization: React.FC = () => {
   );
 
   const isValidPassword = (p: string | undefined): boolean => {
-    if (p && p.length >= PASSWORD_MIN_LENGTH) {
-      return true;
-    }
-    return false;
+    return !!(p && p.length >= PASSWORD_MIN_LENGTH);
   };
 
   const onSubmit = (e) => {

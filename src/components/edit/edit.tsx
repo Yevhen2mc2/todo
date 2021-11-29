@@ -143,7 +143,7 @@ const Edit: React.FC = () => {
           onClick={handleBackToList}
           variant="contained"
         >
-          disable
+          cancel
         </Button>
       </div>
     </>
