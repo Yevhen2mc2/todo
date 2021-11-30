@@ -10,12 +10,12 @@ export const Login: React.FC = () => {
   const PASSWORD_MIN_LENGTH: number = 8;
 
   enum Styles {
-    PASSWORD_ALERT_OFF_STYLE = "passwordAlertOff",
-    PASSWORD_ALERT_ON_STYLE = "passwordAlertOn",
+    PASSWORD_ERROR_OFF = "passwordErrorOff",
+    PASSWORD_ERROR_ON = "passwordErrorOn",
   }
 
   const [passwordAlertStyle, setPasswordAlertStyle] = useState<Styles>(
-    Styles.PASSWORD_ALERT_OFF_STYLE
+    Styles.PASSWORD_ERROR_OFF
   );
 
   const isValidPassword = (p: string | undefined): boolean => {
@@ -27,9 +27,9 @@ export const Login: React.FC = () => {
     const validPassword: boolean = isValidPassword(e.password);
 
     if (!validPassword) {
-      setPasswordAlertStyle(Styles.PASSWORD_ALERT_ON_STYLE);
+      setPasswordAlertStyle(Styles.PASSWORD_ERROR_ON);
       setTimeout(() => {
-        setPasswordAlertStyle(Styles.PASSWORD_ALERT_OFF_STYLE);
+        setPasswordAlertStyle(Styles.PASSWORD_ERROR_OFF);
       }, 3000);
     }
 

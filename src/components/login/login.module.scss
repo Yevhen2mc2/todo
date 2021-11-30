@@ -33,12 +33,12 @@ h1{
     width: 200px;
   }
 }
-.passwordAlertOn{
+.passwordErrorOn{
   color: #ab2020;
   font-size: 12px;
   visibility: visible;
 }
 
-.passwordAlertOff{
+.passwordErrorOff{
   visibility: hidden;
 }
