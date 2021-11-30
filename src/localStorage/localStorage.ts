@@ -18,7 +18,9 @@ class LocalStorageAPI {
     localStorage.setItem(MAIN_DATA_KEY, JSON.stringify(user));
   }
 
-  logOut(): void {}
+  logOut(): void {
+    localStorage.removeItem(MAIN_DATA_KEY);
+  }
 }
 
 export const localStorageAPI = new LocalStorageAPI();
