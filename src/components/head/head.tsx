@@ -2,11 +2,13 @@ import React from "react";
 import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate, Outlet } from "react-router-dom";
 import styles from "./head.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
+import { logoutUser } from "../../redux/todo/actions/actions";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const login: boolean = useSelector((state: RootState) => !!state.todo.user);
   if (login) {
     return (
@@ -16,6 +18,7 @@ export const Head: React.FC = () => {
           <button
             onClick={() => {
               localStorageAPI.logOut();
+              dispatch(logoutUser());
               navigate("login");
             }}
           >

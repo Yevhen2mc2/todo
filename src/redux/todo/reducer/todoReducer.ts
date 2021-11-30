@@ -23,6 +23,10 @@ export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
       return { ...state, user: action.payload };
     }
 
+    case actionsTypes.LOGOUT_USER: {
+      return { ...state, user: null };
+    }
+
     default:
       return state;
   }

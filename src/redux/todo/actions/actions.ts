@@ -14,3 +14,9 @@ export const setUser = (user: User) => {
     payload: user,
   };
 };
+
+export const logoutUser = () => {
+  return {
+    type: actionsTypes.LOGOUT_USER,
+  };
+};
