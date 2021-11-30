@@ -1,11 +1,12 @@
 import React from "react";
 import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
+import styles from "./head.module.scss";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className={styles.header}>
       head...
       <button
         onClick={() => {
