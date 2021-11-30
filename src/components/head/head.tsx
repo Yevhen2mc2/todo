@@ -11,7 +11,7 @@ import { TabContext, TabList } from "@mui/lab";
 export const Head: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = React.useState("/");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);

@@ -36,6 +36,7 @@ const App = () => {
           element={
             <main style={{ padding: "1rem" }}>
               <p>Page absent</p>
+              <button onClick={() => navigate("/")}>Go to main</button>
             </main>
           }
         />

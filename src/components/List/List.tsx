@@ -5,7 +5,7 @@ import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
 import clsx from "clsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
   deleteTaskInJSON,
