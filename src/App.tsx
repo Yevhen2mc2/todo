@@ -20,20 +20,21 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      {login && <Head />}
       <Routes>
-        {!login && <Route path="login" element={<Login />} />}
-        <Route path="/" element={<List />} />
-        <Route path="input" element={<Input />} />
-        <Route path="edit/:id" element={<Edit />} />
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: "1rem" }}>
-              <p>Page absent</p>
-            </main>
-          }
-        />
+        <Route path="/" element={<Head />}>
+          <Route index element={<List />} />
+          <Route path="login" element={<Login />} />
+          <Route path="input" element={<Input />} />
+          <Route path="edit/:id" element={<Edit />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>Page absent</p>
+              </main>
+            }
+          />
+        </Route>
       </Routes>
     </Provider>
   );
