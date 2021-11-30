@@ -42,3 +42,13 @@ h1{
 .passwordErrorOff{
   visibility: hidden;
 }
+
+.emailErrorOn{
+  color: #ab2020;
+  font-size: 12px;
+  visibility: visible;
+}
+
+.emailErrorOff{
+  visibility: hidden;
+}

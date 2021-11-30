@@ -8,14 +8,22 @@ import { localStorageAPI, User } from "../../localStorage/localStorage";
 
 export const Login: React.FC = () => {
   const PASSWORD_MIN_LENGTH: number = 8;
+  let validEmail: boolean = false;
+  let validPassword: boolean = false;
 
   enum Styles {
     PASSWORD_ERROR_OFF = "passwordErrorOff",
     PASSWORD_ERROR_ON = "passwordErrorOn",
+    EMAIL_ERROR_OFF = "emailErrorOff",
+    EMAIL_ERROR_ON = "emailErrorOn",
   }
 
-  const [passwordAlertStyle, setPasswordAlertStyle] = useState<Styles>(
+  const [passwordErrorStyle, setPasswordErrorStyle] = useState<Styles>(
     Styles.PASSWORD_ERROR_OFF
+  );
+
+  const [emailErrorStyle, setEmailErrorStyle] = useState<Styles>(
+    Styles.EMAIL_ERROR_OFF
   );
 
   const isValidPassword = (p: string | undefined): boolean => {
@@ -23,13 +31,20 @@ export const Login: React.FC = () => {
   };
 
   const onSubmit = (e) => {
-    const validEmail: boolean = isEmail(e.email);
-    const validPassword: boolean = isValidPassword(e.password);
+    if (e.email) validEmail = isEmail(e.email);
+    validPassword = isValidPassword(e.password);
+
+    if (!validEmail) {
+      setEmailErrorStyle(Styles.EMAIL_ERROR_ON);
+      setTimeout(() => {
+        setEmailErrorStyle(Styles.EMAIL_ERROR_OFF);
+      }, 3000);
+    }
 
     if (!validPassword) {
-      setPasswordAlertStyle(Styles.PASSWORD_ERROR_ON);
+      setPasswordErrorStyle(Styles.PASSWORD_ERROR_ON);
       setTimeout(() => {
-        setPasswordAlertStyle(Styles.PASSWORD_ERROR_OFF);
+        setPasswordErrorStyle(Styles.PASSWORD_ERROR_OFF);
       }, 3000);
     }
 
@@ -46,7 +61,15 @@ export const Login: React.FC = () => {
   return (
     <>
       <h1>Login at first</h1>
-      <Form onSubmit={onSubmit}>
+      <Form
+        onSubmit={onSubmit}
+        validate={(values) => {
+          console.log("validate:", values);
+          // if (!validEmail) setEmailErrorStyle(Styles.EMAIL_ERROR_OFF);
+          // if (!validPassword) setPasswordErrorStyle(Styles.PASSWORD_ERROR_OFF);
+          return {};
+        }}
+      >
         {(props) => (
           <form onSubmit={props.handleSubmit}>
             <div className={style.loginContainer}>
@@ -55,18 +78,19 @@ export const Login: React.FC = () => {
                 <div className={style.inputEmail}>
                   <Field name="email">
                     {(props) => (
-                      <div>
-                        <TextField
-                          label="email"
-                          variant="outlined"
-                          type="email"
-                          name={props.input.name}
-                          value={props.input.value}
-                          onChange={props.input.onChange}
-                        />
-                      </div>
+                      <TextField
+                        label="email"
+                        variant="outlined"
+                        type="text"
+                        name={props.input.name}
+                        value={props.input.value}
+                        onChange={props.input.onChange}
+                      />
                     )}
                   </Field>
+                  <div className={style[emailErrorStyle]}>
+                    Введите корректный email!
+                  </div>
                 </div>
               </div>
 
@@ -89,7 +113,7 @@ export const Login: React.FC = () => {
                   </Field>
                 </div>
               </div>
-              <div className={style[passwordAlertStyle]}>
+              <div className={style[passwordErrorStyle]}>
                 Минимум {PASSWORD_MIN_LENGTH} символов для пароля!
               </div>
               <Button variant="contained" color="success" type="submit">
