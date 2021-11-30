@@ -100,16 +100,14 @@ export const Login: React.FC = () => {
                 <div className={style.inputPassword}>
                   <Field name="password">
                     {(props) => (
-                      <div>
-                        <TextField
-                          label="password"
-                          variant="outlined"
-                          type="password"
-                          name={props.input.name}
-                          value={props.input.value}
-                          onChange={props.input.onChange}
-                        />
-                      </div>
+                      <TextField
+                        label="password"
+                        variant="outlined"
+                        type="password"
+                        name={props.input.name}
+                        value={props.input.value}
+                        onChange={props.input.onChange}
+                      />
                     )}
                   </Field>
                 </div>
