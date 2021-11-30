@@ -5,8 +5,10 @@ import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
 import isEmail from "validator/lib/isEmail";
 import { localStorageAPI, User } from "../../localStorage/localStorage";
+import { useNavigate } from "react-router-dom";
 
 export const Login: React.FC = () => {
+  const navigate = useNavigate();
   const PASSWORD_MIN_LENGTH: number = 8;
   let validEmail: boolean = false;
   let validPassword: boolean = false;
@@ -55,6 +57,7 @@ export const Login: React.FC = () => {
         password: e.password,
       };
       localStorageAPI.setUser(user);
+      navigate("/");
     }
   };
 
@@ -65,8 +68,6 @@ export const Login: React.FC = () => {
         onSubmit={onSubmit}
         validate={(values) => {
           console.log("validate:", values);
-          // if (!validEmail) setEmailErrorStyle(Styles.EMAIL_ERROR_OFF);
-          // if (!validPassword) setPasswordErrorStyle(Styles.PASSWORD_ERROR_OFF);
           return {};
         }}
       >
