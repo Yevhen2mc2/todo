@@ -18,24 +18,14 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
 
-  const mainApplication = () => {
-    if (login) {
-      return (
-        <>
-          <Route path="/" element={<List />} />
-          <Route path="input" element={<Input />} />
-          <Route path="edit/:id" element={<Edit />} />
-        </>
-      );
-    }
-    return <Route path="login" element={<Login />} />;
-  };
-
   return (
     <Provider store={store}>
       {login && <Head />}
       <Routes>
-        {mainApplication()}
+        {!login && <Route path="login" element={<Login />} />}
+        <Route path="/" element={<List />} />
+        <Route path="input" element={<Input />} />
+        <Route path="edit/:id" element={<Edit />} />
         <Route
           path="*"
           element={
