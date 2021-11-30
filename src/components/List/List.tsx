@@ -5,7 +5,7 @@ import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
   deleteTaskInJSON,
@@ -14,6 +14,7 @@ import {
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getTasksFromJson());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,7 +57,7 @@ const List: React.FC = () => {
               </div>
             </div>
           </div>
-          <Link to={`/edit/${item.id}`}>edit</Link>
+          <Button onClick={() => navigate(`/edit/${item.id}`)}>edit</Button>
           <Button onClick={() => deleteItem(item.id)} className={style.delete}>
             delete
           </Button>

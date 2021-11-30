@@ -67,7 +67,7 @@ export const Login: React.FC = () => {
       <Form
         onSubmit={onSubmit}
         validate={(values) => {
-          console.log("validate:", values);
+          //console.log("validate:", values);
           return {};
         }}
       >

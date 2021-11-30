@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
 import { logoutUser } from "../../redux/todo/actions/actions";
 import { Box, Button, Tab } from "@mui/material";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { TabContext, TabList } from "@mui/lab";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
@@ -36,12 +36,12 @@ export const Head: React.FC = () => {
               >
                 <Tab
                   label="Add new task"
-                  value="1"
+                  value="input"
                   onClick={() => navigate("input")}
                 />
                 <Tab
                   label="My tasks list"
-                  value="2"
+                  value="/"
                   onClick={() => navigate("/")}
                 />
               </TabList>
