@@ -5,26 +5,52 @@ import styles from "./head.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
 import { logoutUser } from "../../redux/todo/actions/actions";
+import { Box, Button, Tab } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [value, setValue] = React.useState("1");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
+  const onClickLogout = () => {
+    localStorageAPI.logOut();
+    dispatch(logoutUser());
+    navigate("login");
+  };
+
   const login: boolean = useSelector((state: RootState) => !!state.todo.user);
   if (login) {
     return (
       <>
-        <div className={styles.header}>
-          head...
-          <button
-            onClick={() => {
-              localStorageAPI.logOut();
-              dispatch(logoutUser());
-              navigate("login");
-            }}
-          >
-            Logout
-          </button>
-        </div>
+        <Box sx={{ width: "100%", typography: "body1" }}>
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList
+                onChange={handleChange}
+                aria-label="lab API tabs example"
+              >
+                <Tab
+                  label="Add new task"
+                  value="1"
+                  onClick={() => navigate("input")}
+                />
+                <Tab
+                  label="My tasks list"
+                  value="2"
+                  onClick={() => navigate("/")}
+                />
+              </TabList>
+              <Button className={styles.exit} onClick={onClickLogout}>
+                Logout
+              </Button>
+            </Box>
+          </TabContext>
+        </Box>
         <Outlet />
       </>
     );

@@ -71,7 +71,6 @@ const List: React.FC = () => {
   return (
     <div>
       <div className={style.containerList}>{renderTaskList(list)}</div>
-      <Link to="/input">add new todo</Link>
     </div>
   );
 };

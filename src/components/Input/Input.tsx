@@ -15,7 +15,6 @@ import { MobileDatePicker } from "@mui/lab";
 import { addDays } from "date-fns";
 import { Priority } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { Link } from "react-router-dom";
 import { putTaskToJSON } from "../../redux/saga/todo/types/types";
 
 const Input: React.FC = () => {
@@ -119,7 +118,6 @@ const Input: React.FC = () => {
         >
           add
         </Button>
-        <Link to="/">List</Link>
       </div>
     </>
   );
