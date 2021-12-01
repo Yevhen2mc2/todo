@@ -22,9 +22,10 @@ export const Login: React.FC = () => {
 
   const isValidPassword = (p: string | undefined): string | undefined => {
     if (!p) {
-      return "empty";
+      return "required field";
     }
-    if (p.length < PASSWORD_MIN_LENGTH) return "shorted";
+    if (p.length < PASSWORD_MIN_LENGTH)
+      return `min length ${PASSWORD_MIN_LENGTH}`;
     return undefined;
   };
 
