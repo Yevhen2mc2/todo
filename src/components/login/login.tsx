@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./login.module.scss";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
 import { localStorageAPI } from "../../localStorage/localStorage";
@@ -9,6 +8,8 @@ import { url } from "../head/head";
 import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";
 import { FormApi } from "final-form";
+import { InputEmail } from "../../shared/inputs/inputEmail";
+import { InputPassword } from "../../shared/inputs/inputPassword";
 
 interface Value {
   email: string;
@@ -37,21 +38,16 @@ export const Login: React.FC = () => {
                 <div className={style.textEmail}>Input your email:</div>
                 <div className={style.inputEmail}>
                   <Field name="email" validate={checkEmail}>
-                    {({ input, meta }) => (
-                      <>
-                        <TextField
+                    {(props) => {
+                      return (
+                        <InputEmail
+                          input={props.input}
+                          meta={props.meta}
                           label="email"
-                          variant="outlined"
-                          type="text"
-                          name={input.name}
-                          value={input.value}
-                          onChange={input.onChange}
+                          type="outline"
                         />
-                        {meta.error && meta.touched && (
-                          <div className={style.error}>{meta.error}</div>
-                        )}
-                      </>
-                    )}
+                      );
+                    }}
                   </Field>
                 </div>
               </div>
@@ -60,21 +56,16 @@ export const Login: React.FC = () => {
                 <div className={style.textPassword}>Input your password:</div>
                 <div className={style.inputPassword}>
                   <Field name="password" validate={isValidPassword}>
-                    {({ input, meta }) => (
-                      <>
-                        <TextField
+                    {(props) => {
+                      return (
+                        <InputPassword
+                          input={props.input}
+                          meta={props.meta}
                           label="password"
-                          variant="outlined"
-                          type="password"
-                          name={input.name}
-                          value={input.value}
-                          onChange={input.onChange}
+                          type="outline"
                         />
-                        {meta.error && meta.touched && (
-                          <div className={style.error}>{meta.error}</div>
-                        )}
-                      </>
-                    )}
+                      );
+                    }}
                   </Field>
                 </div>
               </div>
