@@ -26,9 +26,9 @@ const App = () => {
   }, [!!user]);
   return (
     <Routes>
+      <Route path="login" element={<Login />} />
       <Route path="/" element={<Head />}>
         <Route index element={<List />} />
-        <Route path="login" element={<Login />} />
         <Route path="input" element={<Input />} />
         <Route path="edit/:id" element={<Edit />} />
         <Route
