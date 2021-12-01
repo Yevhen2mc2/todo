@@ -43,7 +43,7 @@ export const Head: React.FC = () => {
                 <Tab
                   label="Add new task"
                   value="input"
-                  onClick={() => navigate(url.login)}
+                  onClick={() => navigate(url.input)}
                 />
                 <Tab
                   label="My tasks list"
