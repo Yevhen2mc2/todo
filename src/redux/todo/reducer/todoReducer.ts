@@ -18,8 +18,6 @@ export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
     }
 
     case actionsTypes.SET_USER: {
-      console.log("case actionsTypes.SET_USER:");
-      console.log({ ...state, user: action.payload });
       return { ...state, user: action.payload };
     }
 
