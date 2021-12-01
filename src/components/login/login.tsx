@@ -58,7 +58,9 @@ export const Login: React.FC = () => {
                           value={input.value}
                           onChange={input.onChange}
                         />
-                        {meta.error && meta.touched && <div>{meta.error}</div>}
+                        {meta.error && meta.touched && (
+                          <div className={style.error}>{meta.error}</div>
+                        )}
                       </>
                     )}
                   </Field>
@@ -79,7 +81,9 @@ export const Login: React.FC = () => {
                           value={input.value}
                           onChange={input.onChange}
                         />
-                        {meta.error && meta.touched && <div>{meta.error}</div>}
+                        {meta.error && meta.touched && (
+                          <div className={style.error}>{meta.error}</div>
+                        )}
                       </>
                     )}
                   </Field>
