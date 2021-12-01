@@ -19,11 +19,11 @@ const App = () => {
     if (!user) {
       navigate(url.login);
     } else {
+      console.log("user", user);
       if (user instanceof Object) dispatch(setUser(user));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [!!user]);
   return (
     <Routes>
       <Route path="/" element={<Head />}>
