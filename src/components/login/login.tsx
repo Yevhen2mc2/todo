@@ -3,35 +3,24 @@ import style from "./login.module.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
-import isEmail from "validator/lib/isEmail";
 import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
 import { url } from "../head/head";
 import { User } from "../../redux/user/types/types";
+import { checkEmail, isValidPassword } from "../../shared/validate";
+import { FormApi } from "final-form";
+
+interface Value {
+  email: string;
+  password: string;
+}
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
-  const PASSWORD_MIN_LENGTH: number = 8;
 
-  const checkEmail = (value) => {
-    if (value) {
-      return isEmail(value) ? undefined : "enter correct email";
-    }
-    return "required";
-  };
-
-  const isValidPassword = (p: string | undefined): string | undefined => {
-    if (!p) {
-      return "required field";
-    }
-    if (p.length < PASSWORD_MIN_LENGTH)
-      return `min length ${PASSWORD_MIN_LENGTH}`;
-    return undefined;
-  };
-
-  const onSubmit = (e) => {
+  const onSubmit = (values: Value, form: FormApi<Value>) => {
     const user: User = {
-      email: e.email,
+      email: values.email,
     };
     localStorageAPI.setUser(user);
     navigate(url.list);
