@@ -70,7 +70,6 @@ const Input: React.FC = () => {
 
   return (
     <>
-      <h2 className={styles.title}>Input</h2>
       <div className={styles.containerInput}>
         <div className={styles.inputTitle}>
           <TextField

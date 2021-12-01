@@ -1,14 +1,14 @@
-import Input from "./components/Input/Input";
-import List from "./components/List/List";
+import Input from "../Input/Input";
+import List from "../List/List";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Edit from "./components/edit/edit";
-import { Login } from "./components/login/login";
-import { localStorageAPI } from "./localStorage/localStorage";
-import { Head, url } from "./components/head/head";
+import Edit from "../edit/edit";
+import { Login } from "../login/login";
+import { localStorageAPI } from "../../localStorage/localStorage";
+import { Head, url } from "../head/head";
 import { useEffect } from "react";
-import { setUser } from "./redux/user/actions/actions";
-import { User } from "./redux/user/types/types";
+import { setUser } from "../../redux/user/actions/actions";
+import { User } from "../../redux/user/types/types";
 
 const App = () => {
   const dispatch = useDispatch();
