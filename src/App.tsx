@@ -4,10 +4,11 @@ import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Edit from "./components/edit/edit";
 import { Login } from "./components/login/login";
-import { localStorageAPI, User } from "./localStorage/localStorage";
+import { localStorageAPI } from "./localStorage/localStorage";
 import { Head, url } from "./components/head/head";
 import { useEffect } from "react";
-import { setUser } from "./redux/todo/actions/actions";
+import { setUser } from "./redux/user/actions/actions";
+import { User } from "./redux/user/types/types";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ const App = () => {
     if (!user) {
       navigate(url.login);
     } else {
-      console.log("user", user);
       if (user instanceof Object) dispatch(setUser(user));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

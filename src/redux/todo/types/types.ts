@@ -1,5 +1,3 @@
-import { User } from "../../../localStorage/localStorage";
-
 export enum actionsTypes {
   PUT_TASKS_TO_STORE = "PUT_TASKS_TO_STORE",
   SET_USER = "SET_USER",
@@ -17,16 +15,7 @@ export interface IPutTasks {
   payload: TaskItem[];
 }
 
-export interface ISetUser {
-  type: typeof actionsTypes.SET_USER;
-  payload: User;
-}
-
-export interface ILogoutUser {
-  type: typeof actionsTypes.LOGOUT_USER;
-}
-
-export type TASKS_ACTIONS = IPutTasks | ISetUser | ILogoutUser;
+export type TASKS_ACTIONS = IPutTasks;
 
 export interface TaskItem {
   id?: number;

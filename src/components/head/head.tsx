@@ -4,9 +4,9 @@ import { useNavigate, Outlet } from "react-router-dom";
 import styles from "./head.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
-import { logoutUser } from "../../redux/todo/actions/actions";
 import { Box, Button, Tab } from "@mui/material";
 import { TabContext, TabList } from "@mui/lab";
+import { logoutUser } from "../../redux/user/actions/actions";
 
 export enum url {
   list = "/",
@@ -29,7 +29,7 @@ export const Head: React.FC = () => {
     navigate(url.login);
   };
 
-  const login: boolean = useSelector((state: RootState) => !!state.todo.user);
+  const login: boolean = useSelector((state: RootState) => !!state.user);
   if (login) {
     return (
       <>

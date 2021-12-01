@@ -4,9 +4,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
 import isEmail from "validator/lib/isEmail";
-import { localStorageAPI, User } from "../../localStorage/localStorage";
+import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
 import { url } from "../head/head";
+import { User } from "../../redux/user/types/types";
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -55,7 +56,6 @@ export const Login: React.FC = () => {
       console.log("success login");
       const user: User = {
         email: e.email,
-        password: e.password,
       };
       localStorageAPI.setUser(user);
       navigate(url.list);

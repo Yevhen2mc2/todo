@@ -1,9 +1,6 @@
-const MAIN_DATA_KEY = "localStorageUser";
+import { User } from "../redux/user/types/types";
 
-export interface User {
-  email: string;
-  password: string;
-}
+const MAIN_DATA_KEY = "localStorageUser";
 
 class LocalStorageAPI {
   getUser(): User | boolean {
