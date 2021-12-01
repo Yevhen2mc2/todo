@@ -18,6 +18,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
 import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
+import { url } from "../head/head";
 
 const Edit: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Edit: React.FC = () => {
 
   useEffect(() => {
     if (!taskToEdit) {
-      navigate("/");
+      navigate(url.list);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskToEdit]);
@@ -49,11 +50,11 @@ const Edit: React.FC = () => {
     if (updatedTask?.deadline) updatedTask.deadline = deadline;
     if (updatedTask?.priority) updatedTask.priority = priority;
     if (updatedTask) dispatch(updateTaskInJSON(updatedTask));
-    navigate("/");
+    navigate(url.list);
   };
 
   const handleBackToList = () => {
-    navigate("/");
+    navigate(url.list);
   };
 
   function datePickers() {

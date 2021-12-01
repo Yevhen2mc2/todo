@@ -6,6 +6,7 @@ import { Form, Field } from "react-final-form";
 import isEmail from "validator/lib/isEmail";
 import { localStorageAPI, User } from "../../localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
+import { url } from "../head/head";
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export const Login: React.FC = () => {
         password: e.password,
       };
       localStorageAPI.setUser(user);
-      navigate("/");
+      navigate(url.list);
     }
   };
 

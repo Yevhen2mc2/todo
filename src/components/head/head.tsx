@@ -8,10 +8,16 @@ import { logoutUser } from "../../redux/todo/actions/actions";
 import { Box, Button, Tab } from "@mui/material";
 import { TabContext, TabList } from "@mui/lab";
 
+export enum url {
+  list = "/",
+  input = "input",
+  login = "login",
+}
+
 export const Head: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState("/");
+  const [value, setValue] = React.useState<string>(url.list);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -20,7 +26,7 @@ export const Head: React.FC = () => {
   const onClickLogout = () => {
     localStorageAPI.logOut();
     dispatch(logoutUser());
-    navigate("login");
+    navigate(url.login);
   };
 
   const login: boolean = useSelector((state: RootState) => !!state.todo.user);
@@ -37,12 +43,12 @@ export const Head: React.FC = () => {
                 <Tab
                   label="Add new task"
                   value="input"
-                  onClick={() => navigate("input")}
+                  onClick={() => navigate(url.login)}
                 />
                 <Tab
                   label="My tasks list"
                   value="/"
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate(url.list)}
                 />
               </TabList>
               <Button className={styles.exit} onClick={onClickLogout}>

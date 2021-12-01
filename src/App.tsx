@@ -5,7 +5,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Edit from "./components/edit/edit";
 import { Login } from "./components/login/login";
 import { localStorageAPI, User } from "./localStorage/localStorage";
-import { Head } from "./components/head/head";
+import { Head, url } from "./components/head/head";
 import { useEffect } from "react";
 import { setUser } from "./redux/todo/actions/actions";
 
@@ -17,7 +17,7 @@ const App = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("login");
+      navigate(url.login);
     } else {
       if (user instanceof Object) dispatch(setUser(user));
     }
