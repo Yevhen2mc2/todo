@@ -7,6 +7,8 @@ import { RootState } from "../../redux/rootReducer";
 import { Box, Button, Tab } from "@mui/material";
 import { TabContext, TabList } from "@mui/lab";
 import { logoutUser } from "../../redux/user/actions/actions";
+import { Loading } from "../../shared/system/loading/loading";
+import { Error } from "../../shared/system/error/error";
 
 export enum url {
   list = "/",
@@ -33,6 +35,8 @@ export const Head: React.FC = () => {
   if (login) {
     return (
       <>
+        <Loading />
+        <Error />
         <Box sx={{ width: "100%", typography: "body1" }}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

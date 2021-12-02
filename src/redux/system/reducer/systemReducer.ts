@@ -1,12 +1,12 @@
 import { actionsSystem, SYSTEM_ACTIONS } from "../types/types";
 
-interface InitialSystemState {
+interface SystemState {
   loading: boolean;
   loaded: boolean;
   error: string | null;
 }
 
-const initialSystemState: InitialSystemState = {
+const initialSystemState: SystemState = {
   loading: false,
   loaded: false,
   error: null,
@@ -15,7 +15,7 @@ const initialSystemState: InitialSystemState = {
 export const SystemReducer = (
   state = initialSystemState,
   action: SYSTEM_ACTIONS
-): InitialSystemState => {
+): SystemState => {
   switch (action.type) {
     case actionsSystem.SET_LOADING: {
       return { ...state, loading: action.payload };
