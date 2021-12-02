@@ -1,4 +1,4 @@
-import { TaskItem } from "../../../todo/types/types";
+import { TaskItem, TodoPreview } from "../../../todo/types/types";
 
 export enum sagaActionsTypes {
   GET_TASKS_FROM_JSON = "GET_TASKS_FROM_JSON",
@@ -13,7 +13,7 @@ export const getTasksFromJson = () => {
   };
 };
 
-export const putTaskToJSON = (task: TaskItem) => {
+export const putTaskToJSON = (task: TodoPreview) => {
   return {
     type: sagaActionsTypes.PUT_TASK_TO_JSON,
     payload: task,

@@ -18,9 +18,11 @@ export interface IPutTasks {
 export type TASKS_ACTIONS = IPutTasks;
 
 export interface TaskItem {
-  id?: number;
+  id: number;
   title: string;
   description: string;
   deadline: Date | null;
   priority: Priority;
 }
+
+export type TodoPreview = Omit<TaskItem, "id">;
