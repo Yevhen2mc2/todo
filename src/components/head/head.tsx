@@ -26,7 +26,7 @@ export const Head: React.FC = () => {
   const onClickLogout = () => {
     localStorageAPI.logOut();
     dispatch(logoutUser());
-    navigate(url.login);
+    navigate(url.login, { replace: true });
   };
 
   const login: boolean = useSelector((state: RootState) => !!state.user);
