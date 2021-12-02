@@ -26,7 +26,7 @@ const Edit: React.FC = () => {
   const navigate = useNavigate();
   const routeParams = useParams();
 
-  const taskToEdit = useSelector(selectorTaskToEdit(routeParams?.id || ""));
+  const taskToEdit = useSelector(selectorTaskToEdit(routeParams.id || ""));
 
   useEffect(() => {
     if (!taskToEdit) {
@@ -35,20 +35,14 @@ const Edit: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskToEdit]);
 
-  const [deadline, setDeadline] = useState<Date | undefined | null>(
-    taskToEdit?.deadline
-  );
-  const [priority, setPriority] = useState<Priority | undefined>(
-    taskToEdit?.priority
-  );
-  const [todoData, setTodoData] = useState<Partial<TaskItem> | undefined>(
-    taskToEdit
-  );
+  const [deadline, setDeadline] = useState<Date | null>(taskToEdit!.deadline);
+  const [priority, setPriority] = useState<Priority>(taskToEdit!.priority);
+  const [todoData, setTodoData] = useState<Partial<TaskItem>>(taskToEdit!);
 
   const updateTaskInRedux = (): void => {
     const updatedTask = todoData;
-    if (updatedTask?.deadline) updatedTask.deadline = deadline;
-    if (updatedTask?.priority) updatedTask.priority = priority;
+    if (updatedTask!.deadline) updatedTask.deadline = deadline;
+    if (updatedTask!.priority) updatedTask.priority = priority;
     if (updatedTask) dispatch(updateTaskInJSON(updatedTask));
     navigate(url.list);
   };
@@ -73,11 +67,11 @@ const Edit: React.FC = () => {
   }
 
   const handleAddToListByEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && todoData?.title !== "") updateTaskInRedux();
+    if (e.key === "Enter" && todoData!.title !== "") updateTaskInRedux();
   };
 
-  const handleAddToListByButton = (e: MouseEvent<HTMLButtonElement>) => {
-    if (todoData?.title !== "") updateTaskInRedux();
+  const handleAddToListByButton = () => {
+    if (todoData!.title !== "") updateTaskInRedux();
   };
 
   const handlerChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +88,7 @@ const Edit: React.FC = () => {
         <div className={styles.inputTitle}>
           <TextField
             inputRef={focusOnInput}
-            value={todoData?.title}
+            value={todoData!.title}
             onKeyPress={handleAddToListByEnter}
             onChange={handlerChange}
             label="Add task"
@@ -104,7 +98,7 @@ const Edit: React.FC = () => {
         </div>
         <div className={styles.inputDescription}>
           <TextField
-            value={todoData?.description}
+            value={todoData!.description}
             onKeyPress={handleAddToListByEnter}
             onChange={handlerChange}
             label="Description"
@@ -132,7 +126,7 @@ const Edit: React.FC = () => {
 
         <div className={styles.data}>{datePickers()}</div>
         <Button
-          disabled={!todoData?.title}
+          disabled={!todoData!.title}
           className={styles.save}
           onClick={handleAddToListByButton}
           variant="contained"
