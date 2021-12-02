@@ -18,7 +18,7 @@ const App = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate(url.login);
+      navigate(url.login, { replace: true });
     } else {
       if (user instanceof Object) dispatch(setUser(user));
     }
