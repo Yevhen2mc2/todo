@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { url } from "../head/head";
 import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";
-import { FormApi } from "final-form";
 import { InputEmail } from "../../shared/inputs/inputEmail";
 import { InputPassword } from "../../shared/inputs/inputPassword";
 
@@ -19,7 +18,7 @@ interface Value {
 export const Login: React.FC = () => {
   const navigate = useNavigate();
 
-  const onSubmit = (values: Value, form: FormApi<Value>) => {
+  const onSubmit = (values: Value) => {
     const user: User = {
       email: values.email,
     };

@@ -1,7 +1,5 @@
 import isEmail from "validator/lib/isEmail";
 
-export const PASSWORD_MIN_LENGTH: number = 8;
-
 export const checkEmail = (value) => {
   if (value) {
     return isEmail(value) ? undefined : "enter correct email";
@@ -9,11 +7,22 @@ export const checkEmail = (value) => {
   return "required";
 };
 
-export const isValidPassword = (p: string | undefined): string | undefined => {
-  if (!p) {
+export const PASSWORD_MIN_LENGTH: number = 8;
+export const isValidPassword = (
+  value: string | undefined
+): string | undefined => {
+  if (!value) {
     return "required field";
   }
-  if (p.length < PASSWORD_MIN_LENGTH)
+  if (value.length < PASSWORD_MIN_LENGTH)
     return `min length ${PASSWORD_MIN_LENGTH}`;
   return undefined;
 };
+
+export const composeValidators =
+  (...validators) =>
+  (value) =>
+    validators.reduce(
+      (error, validator) => error || validator(value),
+      undefined
+    );

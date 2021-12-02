@@ -1,7 +1,6 @@
 import React, {
   ChangeEvent,
   KeyboardEvent,
-  MouseEvent,
   useEffect,
   useRef,
   useState,
