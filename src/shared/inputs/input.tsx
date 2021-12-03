@@ -1,21 +1,22 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import style from "../../components/login/login.module.scss";
+import { FieldInputProps, FieldMetaState } from "react-final-form";
 
-interface IPasswordInput {
+interface IEmailInput {
   label: string;
-  input: any;
-  meta: any;
-  type: string;
+  input: FieldInputProps<any, HTMLElement>;
+  meta: FieldMetaState<any>;
+  type: React.HTMLInputTypeAttribute | undefined;
 }
 
-export const InputPassword = (props: IPasswordInput) => {
+export const Input = (props: IEmailInput) => {
   return (
     <>
       <TextField
-        label="password"
+        label={props.label}
         variant="outlined"
-        type="password"
+        type={props.type}
         name={props.input.name}
         value={props.input.value}
         onChange={props.input.onChange}

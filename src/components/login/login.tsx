@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { url } from "../head/head";
 import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";
-import { InputEmail } from "../../shared/inputs/inputEmail";
-import { InputPassword } from "../../shared/inputs/inputPassword";
+import { Input } from "../../shared/inputs/input";
 
 interface Value {
   email: string;
@@ -39,7 +38,7 @@ export const Login: React.FC = () => {
                   <Field name="email" validate={checkEmail}>
                     {(props) => {
                       return (
-                        <InputEmail
+                        <Input
                           input={props.input}
                           meta={props.meta}
                           label="email"
@@ -57,7 +56,7 @@ export const Login: React.FC = () => {
                   <Field name="password" validate={isValidPassword}>
                     {(props) => {
                       return (
-                        <InputPassword
+                        <Input
                           input={props.input}
                           meta={props.meta}
                           label="password"
