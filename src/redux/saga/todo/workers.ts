@@ -32,7 +32,6 @@ export function* workerPutTasksToJSON(action) {
 
 export function* workerUpdateTaskInJSON(action) {
   try {
-    yield put(setError(true)); // imitation error !!!
     yield call(() => todoAPI.update(action.payload));
   } catch {
     yield put(setError(true));
