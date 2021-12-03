@@ -1,11 +1,12 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import style from "../../components/login/login.module.scss";
+import { FieldInputProps, FieldMetaState } from "react-final-form";
 
 interface IEmailInput {
   label: string;
-  input: any;
-  meta: any;
+  input: FieldInputProps<any, HTMLElement>;
+  meta: FieldMetaState<any>;
   type: string;
 }
 
