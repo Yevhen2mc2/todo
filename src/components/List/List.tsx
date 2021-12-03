@@ -1,25 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import style from "./ListStyle.module.scss";
 import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import {
-  deleteTaskInJSON,
-  getTasksFromJson,
-} from "../../redux/saga/todo/types/types";
-import { getTodoList } from "../../redux/todo/selectors/selectors";
+import { deleteTaskInJSON } from "../../redux/saga/todo/types/types";
 import { url } from "../head/head";
+import { useGetList } from "../../shared/hooks";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(getTasksFromJson());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const list = useGetList();
+  console.log("list", list);
   const deleteItem = (id: number | undefined) => {
     dispatch(deleteTaskInJSON(id));
   };
@@ -69,7 +63,6 @@ const List: React.FC = () => {
     return <div>Empty list</div>;
   };
 
-  const list = useSelector(getTodoList);
   return (
     <div>
       <div className={style.containerList}>{renderTaskList(list)}</div>
