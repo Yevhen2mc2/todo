@@ -3,12 +3,12 @@ import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate, Outlet } from "react-router-dom";
 import styles from "./head.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/rootReducer";
 import { Box, Button, Tab } from "@mui/material";
 import { TabContext, TabList } from "@mui/lab";
 import { logoutUser } from "../../redux/user/actions/actions";
 import { Loading } from "../../shared/system/loading/loading";
 import { Error } from "../../shared/system/error/error";
+import { getLoginState } from "../../redux/user/selectors/selectors";
 
 export enum url {
   list = "/",
@@ -31,7 +31,7 @@ export const Head: React.FC = () => {
     navigate(url.login, { replace: true });
   };
 
-  const login: boolean = useSelector((state: RootState) => !!state.user);
+  const login: boolean = useSelector(getLoginState());
   if (login) {
     return (
       <>

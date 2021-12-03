@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/rootReducer";
 import style from "./ListStyle.module.scss";
 import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";

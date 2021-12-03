@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/rootReducer";
+import { getLoading } from "../../../redux/system/selectors/selectors";
 
 export const Loading: React.FC = () => {
-  const isLoading = useSelector((state: RootState) => state.system.loading);
+  const isLoading = useSelector(getLoading());
   if (isLoading) {
     return (
       <>
