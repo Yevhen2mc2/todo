@@ -8,6 +8,7 @@ interface IEmailInput {
   input: FieldInputProps<any, HTMLElement>;
   meta: FieldMetaState<any>;
   type: React.HTMLInputTypeAttribute | undefined;
+  variant?: "filled" | "outlined" | "standard";
 }
 
 export const Input = (props: IEmailInput) => {
@@ -15,7 +16,7 @@ export const Input = (props: IEmailInput) => {
     <>
       <TextField
         label={props.label}
-        variant="outlined"
+        variant={props.variant ? props.variant : "outlined"}
         type={props.type}
         name={props.input.name}
         value={props.input.value}
