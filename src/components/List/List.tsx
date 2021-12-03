@@ -11,6 +11,7 @@ import {
   deleteTaskInJSON,
   getTasksFromJson,
 } from "../../redux/saga/todo/types/types";
+import { getTodoList } from "../../redux/todo/selectors/selectors";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const List: React.FC = () => {
     return <div>Empty list</div>;
   };
 
-  const list = useSelector((state: RootState) => state.todo.list);
+  const list = useSelector(getTodoList);
   return (
     <div>
       <div className={style.containerList}>{renderTaskList(list)}</div>

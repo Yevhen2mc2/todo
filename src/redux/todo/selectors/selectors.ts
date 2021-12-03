@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 import { RootState } from "../../rootReducer";
 
+export const getTodoList = (state: RootState) => state.todo.list;
+
 export const selectorTaskToEdit = (id: string) =>
-  createSelector(
-    (state: RootState) => state.todo.list,
-    (list) => list.find((task) => task.id === Number(id))
+  createSelector(getTodoList, (list) =>
+    list.find((task) => task.id === Number(id))
   );
