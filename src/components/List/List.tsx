@@ -11,6 +11,7 @@ import {
   getTasksFromJson,
 } from "../../redux/saga/todo/types/types";
 import { getTodoList } from "../../redux/todo/selectors/selectors";
+import { url } from "../head/head";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ const List: React.FC = () => {
               </div>
             </div>
           </div>
-          <Button onClick={() => navigate(`/edit/${item.id}`)}>edit</Button>
+          <Button onClick={() => navigate(url.edit(item.id))}>edit</Button>
           <Button onClick={() => deleteItem(item.id)} className={style.delete}>
             delete
           </Button>

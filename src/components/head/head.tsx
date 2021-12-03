@@ -10,11 +10,12 @@ import { Loading } from "../../shared/system/loading/loading";
 import { Error } from "../../shared/system/error/error";
 import { getLoginState } from "../../redux/user/selectors/selectors";
 
-export enum url {
-  list = "/",
-  input = "input",
-  login = "login",
-}
+export const url = {
+  list: "/",
+  input: "input",
+  login: "login",
+  edit: (id) => `/edit/${id}`,
+};
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
