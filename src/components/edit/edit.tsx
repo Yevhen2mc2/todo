@@ -26,38 +26,30 @@ const Edit: React.FC = () => {
   const routeParams = useParams();
 
   const taskToEdit = useSelector(selectorTaskToEdit(routeParams.id || ""));
+  const [todo, setTodo] = useState<TaskItem | null>(null);
 
   useEffect(() => {
-    if (!taskToEdit) {
-      navigate(url.list);
+    if (taskToEdit) {
+      setTodo((state) => taskToEdit);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [taskToEdit]);
-
-  const [deadline, setDeadline] = useState<Date | null>(taskToEdit!.deadline);
-  const [priority, setPriority] = useState<Priority>(taskToEdit!.priority);
-  const [todoData, setTodoData] = useState<Partial<TaskItem>>(taskToEdit!);
+  }, []);
 
   const updateTaskInRedux = (): void => {
-    const updatedTask = todoData;
-    if (updatedTask!.deadline) updatedTask.deadline = deadline;
-    if (updatedTask!.priority) updatedTask.priority = priority;
-    if (updatedTask) dispatch(updateTaskInJSON(updatedTask));
+    if (todo) dispatch(updateTaskInJSON(todo));
     navigate(url.list);
   };
 
-  const handleBackToList = () => {
-    navigate(url.list);
-  };
+  const handleBackToList = () => navigate(url.list);
 
   function datePickers() {
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <MobileDatePicker
           label="Deadline"
-          value={deadline}
+          value={todo?.deadline}
           onChange={(newDeadline) => {
-            setDeadline(newDeadline);
+            setTodo({ ...todo, deadline: newDeadline } as TaskItem);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
@@ -66,19 +58,22 @@ const Edit: React.FC = () => {
   }
 
   const handleAddToListByEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && todoData!.title !== "") updateTaskInRedux();
+    if (e.key === "Enter" && todo?.title !== "") updateTaskInRedux();
   };
 
   const handleAddToListByButton = () => {
-    if (todoData!.title !== "") updateTaskInRedux();
+    if (todo?.title !== "") updateTaskInRedux();
   };
 
-  const handlerChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodoData((state) => ({
-      ...state,
-      [e.target.name]: e.target.value,
-    }));
+  const handlerChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setTodo({ ...todo, title: e.currentTarget.value } as TaskItem);
   };
+
+  const handlerChangeDescription = (e: ChangeEvent<HTMLInputElement>) => {
+    setTodo({ ...todo, description: e.currentTarget.value } as TaskItem);
+  };
+
+  if (!todo) return null;
 
   return (
     <>
@@ -87,9 +82,9 @@ const Edit: React.FC = () => {
         <div className={styles.inputTitle}>
           <TextField
             inputRef={focusOnInput}
-            value={todoData!.title}
+            value={todo.title}
             onKeyPress={handleAddToListByEnter}
-            onChange={handlerChange}
+            onChange={handlerChangeTitle}
             label="Add task"
             variant="outlined"
             name="title"
@@ -97,9 +92,9 @@ const Edit: React.FC = () => {
         </div>
         <div className={styles.inputDescription}>
           <TextField
-            value={todoData!.description}
+            value={todo.description}
             onKeyPress={handleAddToListByEnter}
-            onChange={handlerChange}
+            onChange={handlerChangeDescription}
             label="Description"
             variant="outlined"
             name="description"
@@ -110,22 +105,22 @@ const Edit: React.FC = () => {
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Priority</InputLabel>
             <Select
-              value={priority}
+              value={todo.priority}
               label="priority"
-              onChange={(e) => setPriority(e.target.value as Priority)}
+              onChange={(e) => {
+                setTodo({ ...todo, priority: e.target.value } as TaskItem);
+              }}
             >
-              <MenuItem value={Priority.LOW}>{`${Priority.LOW}`}</MenuItem>
-              <MenuItem
-                value={Priority.MEDIUM}
-              >{`${Priority.MEDIUM}`}</MenuItem>
-              <MenuItem value={Priority.HIGH}>{`${Priority.HIGH}`}</MenuItem>
+              <MenuItem value={Priority.LOW}>{Priority.LOW}</MenuItem>
+              <MenuItem value={Priority.MEDIUM}>{Priority.MEDIUM}</MenuItem>
+              <MenuItem value={Priority.HIGH}>{Priority.HIGH}</MenuItem>
             </Select>
           </FormControl>
         </div>
 
         <div className={styles.data}>{datePickers()}</div>
         <Button
-          disabled={!todoData!.title}
+          disabled={!todo.title}
           className={styles.save}
           onClick={handleAddToListByButton}
           variant="contained"
