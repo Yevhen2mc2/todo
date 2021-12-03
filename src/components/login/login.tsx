@@ -42,7 +42,7 @@ export const Login: React.FC = () => {
                           input={props.input}
                           meta={props.meta}
                           label="email"
-                          type="outline"
+                          type="text"
                         />
                       );
                     }}
@@ -60,7 +60,7 @@ export const Login: React.FC = () => {
                           input={props.input}
                           meta={props.meta}
                           label="password"
-                          type="outline"
+                          type="password"
                         />
                       );
                     }}
