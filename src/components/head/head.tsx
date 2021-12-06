@@ -32,7 +32,6 @@ export const Head: React.FC = () => {
   if (login) {
     return (
       <>
-        <Loading />
         <Error />
         <Box sx={{ width: "100%", typography: "body1" }}>
           <TabContext value={value}>
@@ -58,6 +57,7 @@ export const Head: React.FC = () => {
             </Box>
           </TabContext>
         </Box>
+        <Loading />
         <Outlet />
       </>
     );
