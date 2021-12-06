@@ -22,9 +22,9 @@ export const Input = (props: IEmailInput) => {
         value={props.input.value}
         onChange={props.input.onChange}
       />
-      {props.meta.error && props.meta.touched && (
+      {(props.meta.error && props.meta.touched && (
         <div className={style.error}>{props.meta.error}</div>
-      )}
+      )) || <div className={style.error}></div>}
     </>
   );
 };
