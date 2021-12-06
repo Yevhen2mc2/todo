@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import styles from "./inputStyle.module.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -16,6 +15,7 @@ import { addDays } from "date-fns";
 import { Priority } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { putTaskToJSON } from "../../redux/saga/todo/types/types";
+import { CommonButton } from "../../shared/buttons/buttons";
 
 const Input: React.FC = () => {
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));
@@ -107,14 +107,14 @@ const Input: React.FC = () => {
         </div>
 
         <div className={styles.data}>{datePickers()}</div>
-        <Button
+        <CommonButton
           disabled={!inputTitle}
           className={styles.add}
           onClick={handleAddToListByButton}
           variant="contained"
         >
           add
-        </Button>
+        </CommonButton>
       </div>
     </>
   );

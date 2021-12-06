@@ -36,7 +36,10 @@ export const Head: React.FC = () => {
         <Error />
         <Box sx={{ width: "100%", typography: "body1" }}>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Box
+              className={styles.header}
+              sx={{ borderBottom: 1, borderColor: "divider" }}
+            >
               <TabList
                 onChange={handleChange}
                 aria-label="lab API tabs example"
@@ -52,9 +55,7 @@ export const Head: React.FC = () => {
                   onClick={() => navigate(url.list)}
                 />
               </TabList>
-              <Button className={styles.exit} onClick={onClickLogout}>
-                Logout
-              </Button>
+              <Button onClick={onClickLogout}>Logout</Button>
             </Box>
           </TabContext>
         </Box>

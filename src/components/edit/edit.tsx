@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import styles from "./editStyle.module.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -18,6 +17,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
 import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
 import { url } from "../../shared/utils";
+import { CommonButton } from "../../shared/buttons/buttons";
 
 const Edit: React.FC = () => {
   const dispatch = useDispatch();
@@ -119,21 +119,16 @@ const Edit: React.FC = () => {
         </div>
 
         <div className={styles.data}>{datePickers()}</div>
-        <Button
+        <CommonButton
           disabled={!todo.title}
-          className={styles.save}
           onClick={handleAddToListByButton}
           variant="contained"
         >
           save
-        </Button>
-        <Button
-          className={styles.save}
-          onClick={handleBackToList}
-          variant="contained"
-        >
+        </CommonButton>
+        <CommonButton onClick={handleBackToList} variant="contained">
           cancel
-        </Button>
+        </CommonButton>
       </div>
     </>
   );

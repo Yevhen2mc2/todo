@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import style from "./login.module.scss";
-import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
 import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +9,7 @@ import { Input } from "../../shared/inputs/input";
 import { url } from "../../shared/utils";
 import { useSelector } from "react-redux";
 import { getUserEmail } from "../../redux/user/selectors/selectors";
+import { CommonButton } from "../../shared/buttons/buttons";
 
 interface Value {
   email: string;
@@ -76,9 +76,9 @@ export const Login: React.FC = () => {
                   </Field>
                 </div>
               </div>
-              <Button variant="contained" color="success" type="submit">
-                Ok
-              </Button>
+              <CommonButton variant="contained" color="success" type="submit">
+                login
+              </CommonButton>
             </div>
           </form>
         )}
