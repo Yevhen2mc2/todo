@@ -8,7 +8,7 @@ import { TabContext, TabList } from "@mui/lab";
 import { logoutUser } from "../../redux/user/actions/actions";
 import { Loading } from "../../shared/system/loading/loading";
 import { Error } from "../../shared/system/error/error";
-import { getLoginState } from "../../redux/user/selectors/selectors";
+import { getUserEmail } from "../../redux/user/selectors/selectors";
 import { url } from "../../shared/utils";
 
 export const Head: React.FC = () => {
@@ -27,8 +27,10 @@ export const Head: React.FC = () => {
     navigate(url.login, { replace: true });
   };
 
-  const login: boolean = useSelector(getLoginState());
-  if (login) {
+  const email: string = useSelector(getUserEmail());
+  const isLogin: boolean = !email.length;
+
+  if (isLogin) {
     return (
       <>
         <Error />

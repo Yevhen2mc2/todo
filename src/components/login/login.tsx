@@ -9,7 +9,7 @@ import { checkEmail, isValidPassword } from "../../shared/validate";
 import { Input } from "../../shared/inputs/input";
 import { url } from "../../shared/utils";
 import { useSelector } from "react-redux";
-import { getLoginState } from "../../redux/user/selectors/selectors";
+import { getUserEmail } from "../../redux/user/selectors/selectors";
 
 interface Value {
   email: string;
@@ -18,7 +18,8 @@ interface Value {
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
-  const isLogin = useSelector(getLoginState());
+  const email = useSelector(getUserEmail());
+  const isLogin: boolean = !!email.length;
 
   useEffect(() => {
     if (isLogin) navigate(url.list, { replace: true });

@@ -8,7 +8,7 @@ export type USER_ACTIONS = ISetUser | ILogoutUser;
 
 export interface ISetUser {
   type: typeof actionsTypes.SET_USER;
-  payload: User;
+  payload: string;
 }
 
 export interface ILogoutUser {
