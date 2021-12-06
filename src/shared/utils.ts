@@ -3,4 +3,5 @@ export const url = {
   input: "/input",
   login: "/login",
   edit: (id) => `/edit/${id}`,
+  editPath: "/edit/:id",
 };

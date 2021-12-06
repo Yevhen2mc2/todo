@@ -24,17 +24,17 @@ const App = () => {
   }, [!!user]);
   return (
     <Routes>
-      <Route path="login" element={<Login />} />
-      <Route path="/" element={<Head />}>
+      <Route path={url.login} element={<Login />} />
+      <Route path={url.list} element={<Head />}>
         <Route index element={<List />} />
-        <Route path="input" element={<Input />} />
-        <Route path="edit/:id" element={<Edit />} />
+        <Route path={url.input} element={<Input />} />
+        <Route path={url.editPath} element={<Edit />} />
         <Route
           path="*"
           element={
             <main style={{ padding: "1rem" }}>
               <p>Page absent</p>
-              <button onClick={() => navigate("/")}>Go to main</button>
+              <button onClick={() => navigate(url.list)}>Go to main</button>
             </main>
           }
         />
