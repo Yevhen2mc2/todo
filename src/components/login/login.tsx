@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
 import { localStorageAPI } from "../../localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
-import { url } from "../head/head";
 import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";
 import { Input } from "../../shared/inputs/input";
+import { url } from "../../shared/utils";
 
 interface Value {
   email: string;

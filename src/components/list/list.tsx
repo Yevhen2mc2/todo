@@ -6,8 +6,8 @@ import { differenceInDays } from "date-fns";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { deleteTaskInJSON } from "../../redux/saga/todo/types/types";
-import { url } from "../head/head";
 import { useGetList } from "../../shared/hooks";
+import { url } from "../../shared/utils";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();

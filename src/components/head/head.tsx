@@ -9,13 +9,7 @@ import { logoutUser } from "../../redux/user/actions/actions";
 import { Loading } from "../../shared/system/loading/loading";
 import { Error } from "../../shared/system/error/error";
 import { getLoginState } from "../../redux/user/selectors/selectors";
-
-export const url = {
-  list: "/",
-  input: "input",
-  login: "login",
-  edit: (id) => `/edit/${id}`,
-};
+import { url } from "../../shared/utils";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();

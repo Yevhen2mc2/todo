@@ -17,7 +17,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
 import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
-import { url } from "../head/head";
+import { url } from "../../shared/utils";
 
 const Edit: React.FC = () => {
   const dispatch = useDispatch();

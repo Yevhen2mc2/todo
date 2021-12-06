@@ -5,10 +5,11 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Edit from "../edit/edit";
 import { Login } from "../login/login";
 import { localStorageAPI } from "../../localStorage/localStorage";
-import { Head, url } from "../head/head";
+import { Head } from "../head/head";
 import { useEffect } from "react";
 import { setUser } from "../../redux/user/actions/actions";
 import { User } from "../../redux/user/types/types";
+import { url } from "../../shared/utils";
 
 const App = () => {
   const dispatch = useDispatch();
