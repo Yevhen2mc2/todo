@@ -13,7 +13,6 @@ const List: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const list = useGetList();
-  console.log("list", list);
   const deleteItem = (id: number | undefined) => {
     dispatch(deleteTaskInJSON(id));
   };
