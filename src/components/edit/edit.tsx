@@ -103,7 +103,7 @@ const Edit: React.FC = () => {
 
         <div className={styles.priority}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+            <InputLabel>Priority</InputLabel>
             <Select
               value={todo.priority}
               label="priority"

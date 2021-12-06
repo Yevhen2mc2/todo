@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import style from "./ListStyle.module.scss";
+import style from "./listStyle.module.scss";
 import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
@@ -18,13 +18,11 @@ const List: React.FC = () => {
     dispatch(deleteTaskInJSON(id));
   };
 
-  const calculateDifference = (task, deadline: Date | null): string => {
+  const calculateDifference = (deadline: Date | null): string => {
     const deadlineDays: number | undefined = deadline
       ? differenceInDays(deadline, new Date())
       : undefined;
-    if (deadlineDays) {
-      return `Time left: ` + deadlineDays + " days";
-    }
+    if (deadlineDays) return `Time left: ` + deadlineDays + " days";
     return "Error calc date";
   };
 
@@ -43,12 +41,11 @@ const List: React.FC = () => {
               <div className={style.taskDescription}>{item.description}</div>
             </div>
             <div className={style.data}>
-              {" "}
               <div className={style.deadline}>
                 {`Deadline: ${item.deadline?.toLocaleDateString()}`}
               </div>
               <div className={style.timeLeft}>
-                {calculateDifference(item, item.deadline)}
+                {calculateDifference(item.deadline)}
               </div>
             </div>
           </div>

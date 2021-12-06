@@ -1,5 +1,5 @@
-import Input from "../Input/Input";
-import List from "../List/List";
+import Input from "../input/input";
+import List from "../list/list";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Edit from "../edit/edit";

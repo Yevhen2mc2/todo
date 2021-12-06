@@ -8,7 +8,7 @@ import React, {
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import styles from "./InputStyle.module.scss";
+import styles from "./inputStyle.module.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDatePicker } from "@mui/lab";
@@ -26,8 +26,8 @@ const Input: React.FC = () => {
   const addNewTaskInStore = (): void => {
     dispatch(
       putTaskToJSON({
-        title: inputTitle,
-        description: inputDescription,
+        title: inputTitle.trim(),
+        description: inputDescription.trim(),
         deadline: deadline,
         priority: priority,
       })
@@ -93,17 +93,15 @@ const Input: React.FC = () => {
 
         <div className={styles.priority}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+            <InputLabel>Priority</InputLabel>
             <Select
               value={priority}
               label="priority"
               onChange={(e) => setPriority(e.target.value as Priority)}
             >
-              <MenuItem value={Priority.LOW}>{`${Priority.LOW}`}</MenuItem>
-              <MenuItem
-                value={Priority.MEDIUM}
-              >{`${Priority.MEDIUM}`}</MenuItem>
-              <MenuItem value={Priority.HIGH}>{`${Priority.HIGH}`}</MenuItem>
+              <MenuItem value={Priority.LOW}>{Priority.LOW}</MenuItem>
+              <MenuItem value={Priority.MEDIUM}>{Priority.MEDIUM}</MenuItem>
+              <MenuItem value={Priority.HIGH}>{Priority.HIGH}</MenuItem>
             </Select>
           </FormControl>
         </div>
