@@ -19,7 +19,7 @@ export const Login: React.FC = () => {
 
   const onSubmit = (values: Value) => {
     const user: User = {
-      email: values.email,
+      email: values.email.trim(),
     };
     localStorageAPI.setUser(user);
     navigate(url.list);
