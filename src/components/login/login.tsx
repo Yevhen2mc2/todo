@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./login.module.scss";
 import Button from "@mui/material/Button";
 import { Form, Field } from "react-final-form";
@@ -8,6 +8,8 @@ import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";
 import { Input } from "../../shared/inputs/input";
 import { url } from "../../shared/utils";
+import { useSelector } from "react-redux";
+import { getLoginState } from "../../redux/user/selectors/selectors";
 
 interface Value {
   email: string;
@@ -16,13 +18,19 @@ interface Value {
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
+  const isLogin = useSelector(getLoginState());
+
+  useEffect(() => {
+    if (isLogin) navigate(url.list, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogin]);
 
   const onSubmit = (values: Value) => {
     const user: User = {
       email: values.email.trim(),
     };
     localStorageAPI.setUser(user);
-    navigate(url.list);
+    navigate(url.list, { replace: true });
   };
 
   return (
