@@ -55,7 +55,9 @@ export const Head: React.FC = () => {
                   onClick={() => navigate(url.list)}
                 />
               </TabList>
-              <Button onClick={onClickLogout}>Logout</Button>
+              <Button onClick={onClickLogout} className={styles.logout}>
+                Logout
+              </Button>
             </Box>
           </TabContext>
         </Box>
