@@ -1,6 +1,6 @@
 import React from "react";
 import { localStorageAPI } from "../../localStorage/localStorage";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import styles from "./head.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Tab } from "@mui/material";
@@ -14,7 +14,9 @@ import { url } from "../../shared/utils";
 export const Head: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState<string>(url.list);
+  const { pathname } = useLocation();
+  console.log(pathname);
+  const [value, setValue] = React.useState<string>(pathname);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -41,12 +43,12 @@ export const Head: React.FC = () => {
               >
                 <Tab
                   label="Add new task"
-                  value="input"
+                  value={url.input}
                   onClick={() => navigate(url.input)}
                 />
                 <Tab
                   label="My tasks list"
-                  value="/"
+                  value={url.list}
                   onClick={() => navigate(url.list)}
                 />
               </TabList>
