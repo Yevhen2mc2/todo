@@ -48,7 +48,7 @@ const List: React.FC = () => {
               </div>
             </div>
           </div>
-          <Button onClick={() => navigate(url.edit(item.id))}>edit</Button>
+          <Button onClick={() => navigate(url.edit.set(item.id))}>edit</Button>
           <Button onClick={() => deleteItem(item.id)} className={style.delete}>
             delete
           </Button>

@@ -28,7 +28,7 @@ const App = () => {
       <Route path={url.list} element={<Head />}>
         <Route index element={<List />} />
         <Route path={url.input} element={<Input />} />
-        <Route path={url.editPath} element={<Edit />} />
+        <Route path={url.edit.path} element={<Edit />} />
         <Route
           path="*"
           element={

@@ -2,6 +2,8 @@ export const url = {
   list: "/",
   input: "/input",
   login: "/login",
-  edit: (id) => `/edit/${id}`,
-  editPath: "/edit/:id",
+  edit: {
+    set: (id) => `/edit/${id}`,
+    path: "/edit/:id",
+  },
 };
