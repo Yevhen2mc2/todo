@@ -16,6 +16,7 @@ export function* workerGetAllTasksFromJSON() {
     yield put(putTasksToStore(todosCorrectDate));
     yield put(setLoading(false));
   } catch {
+    yield put(setLoading(false));
     yield put(setError(true));
     throw new Error("Error get tasks from json-server");
   }
