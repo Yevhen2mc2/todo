@@ -18,11 +18,8 @@ const App = () => {
   const user: User | boolean = localStorageAPI.getUser();
 
   useEffect(() => {
-    if (!user) {
-      navigate(url.login, { replace: true });
-    } else {
-      if (user instanceof Object) dispatch(setUser(user));
-    }
+    if (!user) navigate(url.login, { replace: true });
+    else if (user instanceof Object) dispatch(setUser(user));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!user]);
   return (
