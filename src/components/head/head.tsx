@@ -15,7 +15,6 @@ export const Head: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  console.log(pathname);
   const [value, setValue] = React.useState<string>(pathname);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
