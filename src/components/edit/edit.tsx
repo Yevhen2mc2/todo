@@ -16,7 +16,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
 import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
-import { url } from "../../shared/utils";
+import { MIN_WIDTH, url } from "../../shared/utils";
 import { CommonButton } from "../../shared/buttons/buttons";
 
 const Edit: React.FC = () => {
@@ -81,6 +81,7 @@ const Edit: React.FC = () => {
       <div className={styles.containerInput}>
         <div className={styles.inputTitle}>
           <TextField
+            sx={{ minWidth: MIN_WIDTH }}
             inputRef={focusOnInput}
             value={todo.title}
             onKeyPress={handleAddToListByEnter}
@@ -92,6 +93,7 @@ const Edit: React.FC = () => {
         </div>
         <div className={styles.inputDescription}>
           <TextField
+            sx={{ minWidth: MIN_WIDTH }}
             value={todo.description}
             onKeyPress={handleAddToListByEnter}
             onChange={handlerChangeDescription}

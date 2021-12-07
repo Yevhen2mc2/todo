@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import style from "../../components/login/login.module.scss";
 import { FieldInputProps, FieldMetaState } from "react-final-form";
 
-interface IEmailInput {
+interface InputWithValidation {
   label: string;
   input: FieldInputProps<any, HTMLElement>;
   meta: FieldMetaState<any>;
@@ -11,7 +11,7 @@ interface IEmailInput {
   variant?: "filled" | "outlined" | "standard";
 }
 
-export const Input = (props: IEmailInput) => {
+export const Input = (props: InputWithValidation) => {
   return (
     <>
       <TextField

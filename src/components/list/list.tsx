@@ -28,7 +28,7 @@ const List: React.FC = () => {
   const renderTaskList = (list: TaskItem[]) => {
     if (list.length) {
       return list.map((item, index) => (
-        <div key={item.id}>
+        <div key={item.id} className={style.taskContainer}>
           <div className={style.taskOne}>
             <div className={style.taskData}>
               <div className={clsx(style.chip, style[item.priority])}>

@@ -16,6 +16,7 @@ import { Priority } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { putTaskToJSON } from "../../redux/saga/todo/types/types";
 import { CommonButton } from "../../shared/buttons/buttons";
+import { MIN_WIDTH, MIN_WIDTH_SELECT } from "../../shared/utils";
 
 const Input: React.FC = () => {
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));
@@ -73,6 +74,7 @@ const Input: React.FC = () => {
       <div className={styles.containerInput}>
         <div className={styles.inputTitle}>
           <TextField
+            sx={{ minWidth: MIN_WIDTH }}
             inputRef={focusOnInput}
             value={inputTitle}
             onKeyPress={handleAddToListByEnter}
@@ -83,6 +85,7 @@ const Input: React.FC = () => {
         </div>
         <div className={styles.inputDescription}>
           <TextField
+            sx={{ minWidth: MIN_WIDTH }}
             value={inputDescription}
             onKeyPress={handleAddToListByEnter}
             onChange={handlerChangeDescription}
@@ -95,6 +98,7 @@ const Input: React.FC = () => {
           <FormControl fullWidth>
             <InputLabel>Priority</InputLabel>
             <Select
+              sx={{ minWidth: MIN_WIDTH_SELECT }}
               value={priority}
               label="priority"
               onChange={(e) => setPriority(e.target.value as Priority)}

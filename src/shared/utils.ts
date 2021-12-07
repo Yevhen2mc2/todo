@@ -1,3 +1,6 @@
+export const MIN_WIDTH = "330px";
+export const MIN_WIDTH_SELECT = "200px";
+
 export const url = {
   list: "/",
   input: "/input",
