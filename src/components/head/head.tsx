@@ -1,5 +1,5 @@
 import React from "react";
-import { localStorageAPI } from "../../localStorage/localStorage";
+import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import styles from "./head.module.scss";
 import { useDispatch, useSelector } from "react-redux";

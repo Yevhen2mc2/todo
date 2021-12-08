@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import style from "./login.module.scss";
 import { Form, Field } from "react-final-form";
-import { localStorageAPI } from "../../localStorage/localStorage";
+import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";

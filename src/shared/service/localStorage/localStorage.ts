@@ -1,4 +1,4 @@
-import { User } from "../redux/user/types/types";
+import { User } from "../../../redux/user/types/types";
 
 const MAIN_DATA_KEY = "localStorageUser";
 

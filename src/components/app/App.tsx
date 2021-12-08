@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Edit from "../edit/edit";
 import { Login } from "../login/login";
-import { localStorageAPI } from "../../localStorage/localStorage";
+import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
 import { Head } from "../head/head";
 import { useEffect } from "react";
 import { setUser } from "../../redux/user/actions/actions";
