@@ -10,13 +10,10 @@ import { useEffect } from "react";
 import { setUser } from "../../redux/user/actions/actions";
 import { url } from "../../shared/utils";
 import { IUser } from "../../redux/store/reducers/userSlice";
-import { useAppSelector } from "../../shared/hooks";
+import { useAppDispatch } from "../../shared/hooks";
 
 const App = () => {
-  // const dsf = useAppSelector(state => state.userReducer.email)
-  console.log(">>>>>");
-  console.log(useAppSelector((state) => state.userReducer.email));
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const user: IUser | boolean = localStorageAPI.getUser();
