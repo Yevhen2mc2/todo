@@ -1,7 +1,7 @@
 export enum actionsTypes {
-  ADD_NEW_TASK = "ADD_NEW_TASK",
-  REMOVE_TASK = "REMOVE_TASK",
-  UPDATE_TASK = "UPDATE_TASK",
+  PUT_TASKS_TO_STORE = "PUT_TASKS_TO_STORE",
+  SET_USER = "SET_USER",
+  LOGOUT_USER = "LOGOUT_USER",
 }
 
 export enum Priority {
@@ -10,27 +10,19 @@ export enum Priority {
   HIGH = "high",
 }
 
-export interface IAddNewTask {
-  type: typeof actionsTypes.ADD_NEW_TASK;
-  payload: TaskItem;
+export interface IPutTasks {
+  type: typeof actionsTypes.PUT_TASKS_TO_STORE;
+  payload: TaskItem[];
 }
 
-export interface IRemoveTask {
-  type: typeof actionsTypes.REMOVE_TASK;
-  payload: string;
-}
-
-export interface IUprateTask {
-  type: typeof actionsTypes.UPDATE_TASK;
-  payload: TaskItem;
-}
-
-export type TASKS_ACTIONS = IAddNewTask | IRemoveTask | IUprateTask;
+export type TASKS_ACTIONS = IPutTasks;
 
 export interface TaskItem {
-  id: string;
+  id: number;
   title: string;
   description: string;
   deadline: Date | null;
   priority: Priority;
 }
+
+export type TodoPreview = Omit<TaskItem, "id">;

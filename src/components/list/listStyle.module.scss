@@ -1,13 +1,20 @@
 .taskOne{
     margin: 20px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+}
+
+.taskContainer{
+    border-bottom: 3px solid cornflowerblue;
+    border-radius: 20px;
+    margin: 0 20px 0 20px;
+
 }
 
 .containerList{
     display: flex;
     flex-direction: column;
+    min-width: 350px;
 
     .chip{
         display: flex;
@@ -18,7 +25,6 @@
         padding: 3px;
         height: 14px;
         border-radius: 5px;
-        display: flex;
     }
 
     .high{
@@ -35,17 +41,18 @@
 
     .taskData{
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: start;
 
         .taskTitle{
-            margin: 10px;
+            margin: 3px;
+            font-size: 15px;
         }
 
         .taskDescription{
-            margin: 10px;
-            max-width: 400px;
+            margin: 3px;
+            font-size: 12px;
         }
     }
 

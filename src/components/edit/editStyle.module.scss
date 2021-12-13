@@ -1,10 +1,17 @@
 .containerInput{
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 20px 40px 20px 40px;
+  min-width: 350px;
 }
 
 .title{
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inputDescription {
@@ -21,6 +28,6 @@
 }
 
 .save{
-
+  margin: 10px;
 }
 
