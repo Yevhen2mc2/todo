@@ -1,4 +1,5 @@
-import { RootState } from "../../rootReducer";
+import { RootState } from "../../index";
 
-export const getError = () => (state: RootState) => state.system.error;
-export const getLoading = () => (state: RootState) => state.system.loading;
+export const getError = () => (state: RootState) => state.systemReducer.error;
+export const getLoading = () => (state: RootState) =>
+  state.systemReducer.loading;

@@ -1,13 +1,21 @@
-import { applyMiddleware, createStore } from "redux";
-import rootReducer from "./rootReducer";
-import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "./saga/todo";
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import userReducer from "./store/reducers/userSlice";
+import systemReducer from "./store/reducers/systemSlice";
+import todoReducer from "./store/reducers/todoSlice";
 
-const sagaMiddleware = createSagaMiddleware();
+const rootReducer = combineReducers({
+  userReducer,
+  systemReducer,
+  todoReducer,
+});
 
-const enhancer = applyMiddleware(sagaMiddleware);
-const store = createStore(rootReducer, enhancer);
+export const setupStore = () => {
+  return configureStore({
+    reducer: rootReducer,
+  });
+};
 
-sagaMiddleware.run(rootSaga);
-
-export default store;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];

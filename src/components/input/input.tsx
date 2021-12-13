@@ -14,25 +14,22 @@ import { MobileDatePicker } from "@mui/lab";
 import { addDays } from "date-fns";
 import { Priority } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { putTaskToJSON } from "../../redux/saga/todo/types/types";
 import { CommonButton } from "../../shared/buttons/buttons";
 import { MIN_WIDTH, MIN_WIDTH_SELECT } from "../../shared/utils";
+import { todoAPI } from "../../shared/API/todoAPI";
 
 const Input: React.FC = () => {
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
-  const dispatch = useDispatch();
   const focusOnInput = useRef<HTMLInputElement>(null);
 
   const addNewTaskInStore = (): void => {
-    dispatch(
-      putTaskToJSON({
-        title: inputTitle.trim(),
-        description: inputDescription.trim(),
-        deadline: deadline,
-        priority: priority,
-      })
-    );
+    // putTaskToJSON({
+    //   title: inputTitle.trim(),
+    //   description: inputDescription.trim(),
+    //   deadline: deadline,
+    //   priority: priority,
+    // }) !!!
     setInputTitle("");
     setDescription("");
     if (focusOnInput.current) focusOnInput.current.focus();

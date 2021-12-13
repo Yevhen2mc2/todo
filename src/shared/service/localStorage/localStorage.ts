@@ -1,9 +1,9 @@
-import { User } from "../../../redux/user/types/types";
+import { IUser } from "../../../redux/store/reducers/userSlice";
 
 const MAIN_DATA_KEY = "localStorageUser";
 
 class LocalStorageAPI {
-  getUser(): User | boolean {
+  getUser(): IUser | boolean {
     const data = localStorage.getItem(MAIN_DATA_KEY);
     if (data) {
       return JSON.parse(data);
@@ -11,7 +11,7 @@ class LocalStorageAPI {
     return false;
   }
 
-  setUser(user: User): void {
+  setUser(user: IUser): void {
     localStorage.setItem(MAIN_DATA_KEY, JSON.stringify(user));
   }
 

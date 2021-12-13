@@ -5,7 +5,6 @@ import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
-import { deleteTaskInJSON } from "../../redux/saga/todo/types/types";
 import { useGetList } from "../../shared/hooks";
 import { url } from "../../shared/utils";
 
@@ -13,9 +12,9 @@ const List: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const list = useGetList();
-  const deleteItem = (id: number | undefined) => {
-    dispatch(deleteTaskInJSON(id));
-  };
+  // const deleteItem = (id: number | undefined) => {
+  //   dispatch(deleteTaskInJSON(id));
+  // };
 
   const calculateDifference = (deadline: Date | null): string => {
     const deadlineDays: number | undefined = deadline
@@ -49,9 +48,9 @@ const List: React.FC = () => {
             </div>
           </div>
           <Button onClick={() => navigate(url.edit.set(item.id))}>edit</Button>
-          <Button onClick={() => deleteItem(item.id)} className={style.delete}>
-            delete
-          </Button>
+          {/*<Button onClick={() => deleteItem(item.id)} className={style.delete}>*/}
+          {/*  delete*/}
+          {/*</Button>*/} !!!
         </div>
       ));
     }

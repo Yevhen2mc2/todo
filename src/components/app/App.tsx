@@ -8,14 +8,18 @@ import { localStorageAPI } from "../../shared/service/localStorage/localStorage"
 import { Head } from "../head/head";
 import { useEffect } from "react";
 import { setUser } from "../../redux/user/actions/actions";
-import { User } from "../../redux/user/types/types";
 import { url } from "../../shared/utils";
+import { IUser } from "../../redux/store/reducers/userSlice";
+import { useAppSelector } from "../../shared/hooks";
 
 const App = () => {
+  // const dsf = useAppSelector(state => state.userReducer.email)
+  console.log(">>>>>");
+  console.log(useAppSelector((state) => state.userReducer.email));
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user: User | boolean = localStorageAPI.getUser();
+  const user: IUser | boolean = localStorageAPI.getUser();
 
   useEffect(() => {
     if (!user) navigate(url.login, { replace: true });

@@ -3,13 +3,13 @@ import style from "./login.module.scss";
 import { Form, Field } from "react-final-form";
 import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
 import { useNavigate } from "react-router-dom";
-import { User } from "../../redux/user/types/types";
 import { checkEmail, isValidPassword } from "../../shared/validate";
 import { Input } from "../../shared/inputs/input";
 import { url } from "../../shared/utils";
 import { useSelector } from "react-redux";
-import { getUserEmail } from "../../redux/user/selectors/selectors";
 import { CommonButton } from "../../shared/buttons/buttons";
+import { IUser } from "../../redux/store/reducers/userSlice";
+import { useAppSelector } from "../../shared/hooks";
 
 interface Value {
   email: string;
@@ -18,7 +18,7 @@ interface Value {
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
-  const email = useSelector(getUserEmail());
+  const email = useAppSelector((state) => state.userReducer.email);
   const isLogin: boolean = !!email.length;
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const Login: React.FC = () => {
   }, [isLogin]);
 
   const onSubmit = (values: Value) => {
-    const user: User = {
+    const user: IUser = {
       email: values.email.trim(),
     };
     localStorageAPI.setUser(user);

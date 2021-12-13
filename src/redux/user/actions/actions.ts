@@ -1,7 +1,7 @@
 import { actionsTypes } from "../../todo/types/types";
-import { User } from "../types/types";
+import { IUser } from "../../store/reducers/userSlice";
 
-export const setUser = (user: User) => {
+export const setUser = (user: IUser) => {
   return {
     type: actionsTypes.SET_USER,
     payload: user,

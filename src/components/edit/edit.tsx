@@ -14,7 +14,6 @@ import { MobileDatePicker } from "@mui/lab";
 import { Priority, TaskItem } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
-import { updateTaskInJSON } from "../../redux/saga/todo/types/types";
 import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
 import { MIN_WIDTH, url } from "../../shared/utils";
 import { CommonButton } from "../../shared/buttons/buttons";
@@ -36,7 +35,7 @@ const Edit: React.FC = () => {
   }, []);
 
   const updateTaskInRedux = (): void => {
-    if (todo) dispatch(updateTaskInJSON(todo));
+    //if (todo) dispatch(updateTaskInJSON(todo)); // TODO: rewrite
     navigate(url.list);
   };
 

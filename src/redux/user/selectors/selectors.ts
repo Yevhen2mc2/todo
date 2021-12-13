@@ -1,6 +1,4 @@
-import { RootState } from "../../rootReducer";
-
 export const getUserEmail =
   () =>
-  (state: RootState): string =>
-    state.user.email;
+  (state): string =>
+    state.userReducer.email;

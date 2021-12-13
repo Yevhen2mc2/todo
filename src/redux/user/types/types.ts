@@ -1,9 +1,5 @@
 import { actionsTypes } from "../../todo/types/types";
 
-export interface User {
-  email: string;
-}
-
 export type USER_ACTIONS = ISetUser | ILogoutUser;
 
 export interface ISetUser {
