@@ -18,8 +18,22 @@ export const todoThunk = {
     }
   },
 
-  putTaskToJSON: () => async (dispatch: AppDispatch) => {
-    try {
-    } catch (e) {}
-  },
+  putTaskToJSON:
+    (todo: Partial<ITaskItem>) => async (dispatch: AppDispatch) => {
+      try {
+        await todoAPI.post(todo);
+      } catch (e) {
+        dispatch(systemSlice.actions.setError("Error in putTaskToJSON"));
+        throw new Error("Error put task to json-server");
+      }
+    },
 };
+
+// export function* workerPutTasksToJSON(action) {
+//   try {
+//     yield call(() => todoAPI.post(action.payload));
+//   } catch {
+//     yield put(setError(true));
+//     throw new Error("Error put task to json-server");
+//   }
+// }
