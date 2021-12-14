@@ -17,6 +17,7 @@ import { MIN_WIDTH, url } from "../../shared/utils";
 import { CommonButton } from "../../shared/buttons/buttons";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks";
 import { Priority, ITaskItem } from "../../redux/todo/todoSlice";
+import { todoThunk } from "../../redux/todo/thunk";
 
 const Edit: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ const Edit: React.FC = () => {
   }, []);
 
   const updateTaskInRedux = (): void => {
-    //if (todo) dispatch(updateTaskInJSON(todo)); // TODO: rewrite
+    if (todo) dispatch(todoThunk.updateTaskInJSON(todo));
     navigate(url.list);
   };
 
