@@ -15,6 +15,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { CommonButton } from "../../shared/buttons/buttons";
 import { MIN_WIDTH, MIN_WIDTH_SELECT } from "../../shared/utils";
 import { Priority } from "../../redux/todo/todoSlice";
+import { Thunk } from "../../redux/rootThunk";
 
 const Input: React.FC = () => {
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));
@@ -22,12 +23,12 @@ const Input: React.FC = () => {
   const focusOnInput = useRef<HTMLInputElement>(null);
 
   const addNewTaskInStore = (): void => {
-    // putTaskToJSON({
-    //   title: inputTitle.trim(),
-    //   description: inputDescription.trim(),
-    //   deadline: deadline,
-    //   priority: priority,
-    // }) !!!
+    Thunk.todo.putTaskToJSON({
+      title: inputTitle.trim(),
+      description: inputDescription.trim(),
+      deadline: deadline,
+      priority: priority,
+    });
     setInputTitle("");
     setDescription("");
     if (focusOnInput.current) focusOnInput.current.focus();
