@@ -6,20 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useGetList } from "../../shared/hooks";
 import { url } from "../../shared/utils";
 import { ITaskItem } from "../../redux/todo/todoSlice";
-import { AppDispatch } from "../../redux";
+import { Thunk } from "../../redux/rootThunk";
 
 const List: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const list = useGetList();
-  const deleteItem = (id: number | undefined) => {
-    dispatch(deleteTaskInJSON(id));
-  };
-
-  const deleteTaskInJSON =
-    (id: number | undefined) => (dispatch: AppDispatch) => {
-      console.log(id);
-    };
+  const deleteItem = (id: number) => dispatch(Thunk.todo.deleteTaskInJSON(id));
 
   const calculateDifference = (deadline: string | null): string => {
     const deadlineObj = deadline ? new Date(deadline) : null;
