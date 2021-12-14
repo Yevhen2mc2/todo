@@ -26,7 +26,7 @@ const Input: React.FC = () => {
     Thunk.todo.putTaskToJSON({
       title: inputTitle.trim(),
       description: inputDescription.trim(),
-      deadline: deadline,
+      deadline: "sd",
       priority: priority,
     });
     setInputTitle("");
@@ -99,9 +99,9 @@ const Input: React.FC = () => {
               label="priority"
               onChange={(e) => setPriority(e.target.value as Priority)}
             >
-              <MenuItem value={Priority.LOW}>{Priority.LOW}</MenuItem>
-              <MenuItem value={Priority.MEDIUM}>{Priority.MEDIUM}</MenuItem>
-              <MenuItem value={Priority.HIGH}>{Priority.HIGH}</MenuItem>
+              <MenuItem value={Priority.LOW}>Priority.LOW</MenuItem>
+              <MenuItem value={Priority.MEDIUM}>Priority.MEDIUM</MenuItem>
+              <MenuItem value={Priority.HIGH}>Priority.HIGH</MenuItem>
             </Select>
           </FormControl>
         </div>

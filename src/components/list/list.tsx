@@ -22,7 +22,7 @@ const List: React.FC = () => {
     };
 
   const calculateDifference = (deadline: string | null): string => {
-    const deadlineObj: Date | null = deadline ? new Date(deadline) : null;
+    const deadlineObj = deadline ? new Date(deadline) : null;
 
     const deadlineDays: number | undefined = deadlineObj
       ? differenceInDays(deadlineObj, new Date())
