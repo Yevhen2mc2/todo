@@ -5,18 +5,16 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import styles from "./inputStyle.module.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDatePicker } from "@mui/lab";
 import { addDays } from "date-fns";
-import { Priority } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { CommonButton } from "../../shared/buttons/buttons";
 import { MIN_WIDTH, MIN_WIDTH_SELECT } from "../../shared/utils";
-import { todoAPI } from "../../shared/API/todoAPI";
+import { Priority } from "../../redux/todo/todoSlice";
 
 const Input: React.FC = () => {
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));

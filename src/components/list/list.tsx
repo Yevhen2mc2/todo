@@ -1,15 +1,14 @@
-import { useDispatch } from "react-redux";
 import style from "./listStyle.module.scss";
-import { TaskItem } from "../../redux/todo/types/types";
 import { Button } from "@mui/material";
 import { differenceInDays } from "date-fns";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
-import { useGetList } from "../../shared/hooks";
+import { useAppDispatch, useGetList } from "../../shared/hooks";
 import { url } from "../../shared/utils";
+import { TaskItem } from "../../redux/todo/todoSlice";
 
 const List: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const list = useGetList();
   // const deleteItem = (id: number | undefined) => {
