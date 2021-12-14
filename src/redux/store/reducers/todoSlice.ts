@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TaskItem } from "../../todo/types/types";
 
 interface InitialState {
@@ -12,18 +12,12 @@ const initialState: InitialState = {
 const todoSlice = createSlice({
   name: "todo",
   initialState,
-  reducers: {},
+  reducers: {
+    putTaskToStore(state, action: PayloadAction<TaskItem>) {
+      // state.list.push(action.payload); ?
+      state.list[0] = action.payload;
+    },
+  },
 });
-
-// export const TodoReducer = (state = initialState, action: TASKS_ACTIONS) => {
-//     switch (action.type) {
-//         case actionsTypes.PUT_TASKS_TO_STORE: {
-//             return { ...state, list: action.payload };
-//         }
-//
-//         default:
-//             return state;
-//     }
-// };
 
 export default todoSlice.reducer;
