@@ -5,25 +5,33 @@ import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useGetList } from "../../shared/hooks";
 import { url } from "../../shared/utils";
-import { TaskItem } from "../../redux/todo/todoSlice";
+import { ITaskItem } from "../../redux/todo/todoSlice";
+import { AppDispatch } from "../../redux";
 
 const List: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const list = useGetList();
-  // const deleteItem = (id: number | undefined) => {
-  //   dispatch(deleteTaskInJSON(id));
-  // };
+  const deleteItem = (id: number | undefined) => {
+    dispatch(deleteTaskInJSON(id));
+  };
 
-  const calculateDifference = (deadline: Date | null): string => {
-    const deadlineDays: number | undefined = deadline
-      ? differenceInDays(deadline, new Date())
+  const deleteTaskInJSON =
+    (id: number | undefined) => (dispatch: AppDispatch) => {
+      console.log(id);
+    };
+
+  const calculateDifference = (deadline: string | null): string => {
+    const deadlineObj: Date | null = deadline ? new Date(deadline) : null;
+
+    const deadlineDays: number | undefined = deadlineObj
+      ? differenceInDays(deadlineObj, new Date())
       : undefined;
     if (deadlineDays) return `Time left: ` + deadlineDays + " days";
     return "Error calc date";
   };
 
-  const renderTaskList = (list: TaskItem[]) => {
+  const renderTaskList = (list: ITaskItem[]) => {
     if (list.length) {
       return list.map((item, index) => (
         <div key={item.id} className={style.taskContainer}>
@@ -39,7 +47,7 @@ const List: React.FC = () => {
             </div>
             <div className={style.data}>
               <div className={style.deadline}>
-                {`Deadline: ${item.deadline?.toLocaleDateString()}`}
+                {`Deadline: ${item.deadline}`}
               </div>
               <div className={style.timeLeft}>
                 {calculateDifference(item.deadline)}
@@ -47,9 +55,9 @@ const List: React.FC = () => {
             </div>
           </div>
           <Button onClick={() => navigate(url.edit.set(item.id))}>edit</Button>
-          {/*<Button onClick={() => deleteItem(item.id)} className={style.delete}>*/}
-          {/*  delete*/}
-          {/*</Button>*/} !!!
+          <Button onClick={() => deleteItem(item.id)} className={style.delete}>
+            delete
+          </Button>
         </div>
       ));
     }
