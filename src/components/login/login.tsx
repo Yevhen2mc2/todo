@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { checkEmail, isValidPassword } from "../../shared/validate";
 import { Input } from "../../shared/inputs/input";
 import { url } from "../../shared/utils";
-import { useSelector } from "react-redux";
 import { CommonButton } from "../../shared/buttons/buttons";
-import { IUser } from "../../redux/store/reducers/userSlice";
+import { IUser } from "../../redux/user/userSlice";
 import { useAppSelector } from "../../shared/hooks";
 
 interface Value {

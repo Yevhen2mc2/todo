@@ -1,4 +1,4 @@
-import { IUser } from "../../../redux/store/reducers/userSlice";
+import { IUser } from "../../../redux/user/userSlice";
 
 const MAIN_DATA_KEY = "localStorageUser";
 

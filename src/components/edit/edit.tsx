@@ -5,21 +5,22 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import styles from "./editStyle.module.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDatePicker } from "@mui/lab";
-import { Priority, TaskItem } from "../../redux/todo/types/types";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
-import { selectorTaskToEdit } from "../../redux/todo/selectors/selectors";
+import { selectorTaskToEdit } from "../../redux/todo/selectors";
 import { MIN_WIDTH, url } from "../../shared/utils";
 import { CommonButton } from "../../shared/buttons/buttons";
+import { useAppDispatch } from "../../shared/hooks";
+import { Priority, TaskItem } from "../../redux/todo/todoSlice";
 
 const Edit: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const focusOnInput = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const routeParams = useParams();

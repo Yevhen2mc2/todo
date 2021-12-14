@@ -1,4 +1,4 @@
-import { TaskItem } from "../../redux/todo/types/types";
+import { TaskItem } from "../../redux/todo/todoSlice";
 
 class TodoAPI {
   url: string;

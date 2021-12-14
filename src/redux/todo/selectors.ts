@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { RootState } from "../../index";
+import { RootState } from "../index";
 
 export const getTodoList = (state: RootState) => state.todoReducer.list;
 

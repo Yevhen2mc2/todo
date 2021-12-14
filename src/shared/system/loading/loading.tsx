@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getLoading } from "../../../redux/system/selectors/selectors";
+import { getLoading } from "../../../redux/system/selectors";
 import { Box, LinearProgress } from "@mui/material";
 
 export const Loading: React.FC = () => {

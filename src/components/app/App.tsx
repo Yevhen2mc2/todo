@@ -7,9 +7,8 @@ import { Login } from "../login/login";
 import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
 import { Head } from "../head/head";
 import { useEffect } from "react";
-import { setUser } from "../../redux/user/actions/actions";
 import { url } from "../../shared/utils";
-import { IUser } from "../../redux/store/reducers/userSlice";
+import { IUser, userSlice } from "../../redux/user/userSlice";
 import { useAppDispatch } from "../../shared/hooks";
 
 const App = () => {
@@ -20,7 +19,8 @@ const App = () => {
 
   useEffect(() => {
     if (!user) navigate(url.login, { replace: true });
-    else if (user instanceof Object) dispatch(setUser(user));
+    else if (user instanceof Object)
+      dispatch(userSlice.actions.setUser(user.email));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!user]);
   return (

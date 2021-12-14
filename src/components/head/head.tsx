@@ -2,18 +2,19 @@ import React from "react";
 import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import styles from "./head.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Box, Button, Tab } from "@mui/material";
 import { TabContext, TabList } from "@mui/lab";
-import { logoutUser } from "../../redux/user/actions/actions";
 import { Loading } from "../../shared/system/loading/loading";
 import { Error } from "../../shared/system/error/error";
-import { getUserEmail } from "../../redux/user/selectors/selectors";
+import { getUserEmail } from "../../redux/user/selectors";
 import { url } from "../../shared/utils";
+import { userSlice } from "../../redux/user/userSlice";
+import { useAppDispatch } from "../../shared/hooks";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const [value, setValue] = React.useState<string>(pathname);
 
@@ -23,7 +24,7 @@ export const Head: React.FC = () => {
 
   const onClickLogout = () => {
     localStorageAPI.logOut();
-    dispatch(logoutUser());
+    dispatch(userSlice.actions.logout);
     navigate(url.login, { replace: true });
   };
 

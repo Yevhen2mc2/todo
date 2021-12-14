@@ -1,5 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TaskItem } from "../../todo/types/types";
+
+export enum Priority {
+  LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
+}
+
+export interface TaskItem {
+  id: number;
+  title: string;
+  description: string;
+  deadline: Date | null;
+  priority: Priority;
+}
 
 interface InitialState {
   list: TaskItem[] | [];
@@ -9,7 +22,7 @@ const initialState: InitialState = {
   list: [],
 };
 
-const todoSlice = createSlice({
+export const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
