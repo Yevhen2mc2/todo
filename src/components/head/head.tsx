@@ -27,7 +27,7 @@ export const Head: React.FC = () => {
   };
 
   const email: string = useAppSelector((state) => state.userReducer.email);
-  const isLogin: boolean = !email.length;
+  const isLogin: boolean = !!email.length;
 
   if (isLogin) {
     return (
