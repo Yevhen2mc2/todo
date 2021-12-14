@@ -4,7 +4,7 @@ import { getTodoList } from "../redux/todo/selectors";
 import { AppDispatch, RootState } from "../redux";
 import { systemSlice } from "../redux/system/systemSlice";
 import { todoAPI } from "./API/todoAPI";
-import { ITaskItem, todoSlice } from "../redux/todo/todoSlice";
+import { todoSlice } from "../redux/todo/todoSlice";
 
 export const useGetList = () => {
   const dispatch = useAppDispatch();
