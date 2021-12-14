@@ -5,7 +5,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import styles from "./editStyle.module.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -16,7 +15,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { selectorTaskToEdit } from "../../redux/todo/selectors";
 import { MIN_WIDTH, url } from "../../shared/utils";
 import { CommonButton } from "../../shared/buttons/buttons";
-import { useAppDispatch } from "../../shared/hooks";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks";
 import { Priority, ITaskItem } from "../../redux/todo/todoSlice";
 
 const Edit: React.FC = () => {
@@ -25,7 +24,7 @@ const Edit: React.FC = () => {
   const navigate = useNavigate();
   const routeParams = useParams();
 
-  const taskToEdit = useSelector(selectorTaskToEdit(routeParams.id || ""));
+  const taskToEdit = useAppSelector(selectorTaskToEdit(routeParams.id || ""));
   const [todo, setTodo] = useState<ITaskItem | null>(null);
 
   useEffect(() => {

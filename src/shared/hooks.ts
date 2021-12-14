@@ -12,7 +12,7 @@ export const useGetList = () => {
     dispatch(getTasksFromJson());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return useSelector(getTodoList);
+  return useAppSelector(getTodoList);
 };
 
 const getTasksFromJson = () => async (dispatch: AppDispatch) => {
@@ -24,7 +24,7 @@ const getTasksFromJson = () => async (dispatch: AppDispatch) => {
     dispatch(systemSlice.actions.setLoading(false));
   } catch (e) {
     dispatch(systemSlice.actions.setLoading(false));
-    dispatch(systemSlice.actions.setError("Error"));
+    dispatch(systemSlice.actions.setError("Error in getTasksFromJson"));
     throw new Error("Error get tasks from json-server");
   }
 };

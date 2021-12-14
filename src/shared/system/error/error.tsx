@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { Snackbar } from "@mui/material";
-import { useSelector } from "react-redux";
 import { getError } from "../../../redux/system/selectors";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { systemSlice } from "../../../redux/system/systemSlice";
 
 export const Error: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isError = useSelector(getError());
+  const isError = useAppSelector(getError());
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
