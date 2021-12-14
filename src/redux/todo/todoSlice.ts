@@ -6,19 +6,19 @@ export enum Priority {
   HIGH = "high",
 }
 
-export interface TaskItem {
+export interface ITaskItem {
   id: number;
   title: string;
   description: string;
-  deadline: Date | null;
+  deadline: string | null;
   priority: Priority;
 }
 
-interface InitialState {
-  list: TaskItem[] | [];
+interface ITodosList {
+  list: ITaskItem[] | [];
 }
 
-const initialState: InitialState = {
+const initialState: ITodosList = {
   list: [],
 };
 
@@ -26,9 +26,8 @@ export const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    putTaskToStore(state, action: PayloadAction<TaskItem>) {
-      // state.list.push(action.payload); ?
-      state.list[0] = action.payload;
+    putTaskToStore(state, action: PayloadAction<ITaskItem[]>) {
+      state.list = action.payload;
     },
   },
 });
