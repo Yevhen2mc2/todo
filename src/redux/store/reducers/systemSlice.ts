@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SystemState {
   loading: boolean;
@@ -15,29 +15,17 @@ const initialSystemState: SystemState = {
 export const systemSlice = createSlice({
   name: "system",
   initialState: initialSystemState,
-  reducers: {},
+  reducers: {
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
+    setLoaded(state, action: PayloadAction<boolean>) {
+      state.loaded = action.payload;
+    },
+    setError(state, action: PayloadAction<null | string>) {
+      state.error = action.payload;
+    },
+  },
 });
 
 export default systemSlice.reducer;
-
-// export const SystemReducer = (
-//     state = initialSystemState,
-//     action: SYSTEM_ACTIONS
-// ): SystemState => {
-//     switch (action.type) {
-//         case actionsSystem.SET_LOADING: {
-//             return { ...state, loading: action.payload };
-//         }
-//
-//         case actionsSystem.SET_LOADED: {
-//             return { ...state, loaded: action.payload };
-//         }
-//
-//         case actionsSystem.SET_ERROR: {
-//             return { ...state, error: action.payload };
-//         }
-//
-//         default:
-//             return state;
-//     }
-// };
