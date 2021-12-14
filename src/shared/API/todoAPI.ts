@@ -1,4 +1,4 @@
-import { TaskItem } from "../../redux/todo/todoSlice";
+import { ITaskItem } from "../../redux/todo/todoSlice";
 
 class TodoAPI {
   url: string;
@@ -6,7 +6,7 @@ class TodoAPI {
     this.url = url;
   }
 
-  post(todo: TaskItem) {
+  post(todo: ITaskItem) {
     return fetch(this.url, {
       method: "POST",
       headers: {
@@ -16,7 +16,7 @@ class TodoAPI {
     });
   }
 
-  update(task: TaskItem) {
+  update(task: ITaskItem) {
     return fetch(this.url + `/${task.id}`, {
       method: "PATCH",
       headers: {
