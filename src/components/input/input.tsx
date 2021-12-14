@@ -16,19 +16,23 @@ import { CommonButton } from "../../shared/buttons/buttons";
 import { MIN_WIDTH, MIN_WIDTH_SELECT } from "../../shared/utils";
 import { Priority } from "../../redux/todo/todoSlice";
 import { Thunk } from "../../redux/rootThunk";
+import { useAppDispatch } from "../../shared/hooks";
 
 const Input: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [deadline, setDeadline] = useState<Date | null>(addDays(new Date(), 7));
   const [priority, setPriority] = useState<Priority>(Priority.MEDIUM);
   const focusOnInput = useRef<HTMLInputElement>(null);
 
   const addNewTaskInStore = (): void => {
-    Thunk.todo.putTaskToJSON({
-      title: inputTitle.trim(),
-      description: inputDescription.trim(),
-      deadline: "sd",
-      priority: priority,
-    });
+    dispatch(
+      Thunk.todo.putTaskToJSON({
+        title: inputTitle.trim(),
+        description: inputDescription.trim(),
+        deadline: deadline!.toString(),
+        priority: priority,
+      })
+    );
     setInputTitle("");
     setDescription("");
     if (focusOnInput.current) focusOnInput.current.focus();
@@ -99,9 +103,9 @@ const Input: React.FC = () => {
               label="priority"
               onChange={(e) => setPriority(e.target.value as Priority)}
             >
-              <MenuItem value={Priority.LOW}>Priority.LOW</MenuItem>
-              <MenuItem value={Priority.MEDIUM}>Priority.MEDIUM</MenuItem>
-              <MenuItem value={Priority.HIGH}>Priority.HIGH</MenuItem>
+              <MenuItem value={Priority.LOW}>{Priority.LOW}</MenuItem>
+              <MenuItem value={Priority.MEDIUM}>{Priority.MEDIUM}</MenuItem>
+              <MenuItem value={Priority.HIGH}>{Priority.HIGH}</MenuItem>
             </Select>
           </FormControl>
         </div>
