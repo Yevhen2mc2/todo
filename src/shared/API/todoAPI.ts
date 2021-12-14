@@ -6,7 +6,7 @@ class TodoAPI {
     this.url = url;
   }
 
-  post(todo: ITaskItem) {
+  post(todo: Partial<ITaskItem>) {
     return fetch(this.url, {
       method: "POST",
       headers: {
