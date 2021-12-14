@@ -1,16 +1,14 @@
 import React from "react";
 import { localStorageAPI } from "../../shared/service/localStorage/localStorage";
-import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import styles from "./head.module.scss";
-import { useSelector } from "react-redux";
 import { Box, Button, Tab } from "@mui/material";
 import { TabContext, TabList } from "@mui/lab";
 import { Loading } from "../../shared/system/loading/loading";
 import { Error } from "../../shared/system/error/error";
-import { getUserEmail } from "../../redux/user/selectors";
 import { url } from "../../shared/utils";
 import { userSlice } from "../../redux/user/userSlice";
-import { useAppDispatch } from "../../shared/hooks";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks";
 
 export const Head: React.FC = () => {
   const navigate = useNavigate();
@@ -28,7 +26,7 @@ export const Head: React.FC = () => {
     navigate(url.login, { replace: true });
   };
 
-  const email: string = useSelector(getUserEmail());
+  const email: string = useAppSelector((state) => state.userReducer.email);
   const isLogin: boolean = !email.length;
 
   if (isLogin) {
