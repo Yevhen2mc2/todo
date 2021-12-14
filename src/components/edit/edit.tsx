@@ -17,7 +17,7 @@ import { selectorTaskToEdit } from "../../redux/todo/selectors";
 import { MIN_WIDTH, url } from "../../shared/utils";
 import { CommonButton } from "../../shared/buttons/buttons";
 import { useAppDispatch } from "../../shared/hooks";
-import { Priority, TaskItem } from "../../redux/todo/todoSlice";
+import { Priority, ITaskItem } from "../../redux/todo/todoSlice";
 
 const Edit: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const Edit: React.FC = () => {
   const routeParams = useParams();
 
   const taskToEdit = useSelector(selectorTaskToEdit(routeParams.id || ""));
-  const [todo, setTodo] = useState<TaskItem | null>(null);
+  const [todo, setTodo] = useState<ITaskItem | null>(null);
 
   useEffect(() => {
     if (taskToEdit) {
@@ -49,7 +49,7 @@ const Edit: React.FC = () => {
           label="Deadline"
           value={todo?.deadline}
           onChange={(newDeadline) => {
-            setTodo({ ...todo, deadline: newDeadline } as TaskItem);
+            setTodo({ ...todo, deadline: newDeadline } as ITaskItem);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
@@ -66,11 +66,11 @@ const Edit: React.FC = () => {
   };
 
   const handlerChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodo({ ...todo, title: e.currentTarget.value } as TaskItem);
+    setTodo({ ...todo, title: e.currentTarget.value } as ITaskItem);
   };
 
   const handlerChangeDescription = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodo({ ...todo, description: e.currentTarget.value } as TaskItem);
+    setTodo({ ...todo, description: e.currentTarget.value } as ITaskItem);
   };
 
   if (!todo) return null;
@@ -110,7 +110,7 @@ const Edit: React.FC = () => {
               value={todo.priority}
               label="priority"
               onChange={(e) => {
-                setTodo({ ...todo, priority: e.target.value } as TaskItem);
+                setTodo({ ...todo, priority: e.target.value } as ITaskItem);
               }}
             >
               <MenuItem value={Priority.LOW}>{Priority.LOW}</MenuItem>
